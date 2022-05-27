@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>sort-asc</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="sort-asc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M32,2 L64,50 L40,50 L40,122 L24,122 L24,50 L0,50 L32,2 Z M80,10 L96,10 L96,26 L80,26 L80,10 Z M80,34 L104,34 L104,50 L80,50 L80,34 Z M80,58 L112,58 L112,74 L80,74 L80,58 Z M80,82 L120,82 L120,98 L80,98 L80,82 Z M80,106 L128,106 L128,122 L80,122 L80,106 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

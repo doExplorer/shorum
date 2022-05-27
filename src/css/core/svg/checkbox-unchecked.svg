@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>checkbox-unchecked</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="checkbox-unchecked" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M107.714286,4 L22,4 C12.5714286,4 4,12.5714286 4,22 L4,107.714286 C4,117.142857 12.5714286,124 22.8571429,124 L107.714286,124 C117.142857,124 124,117.142857 124,107.714286 L124,22 C124,12.5714286 117.142857,4 107.714286,4 Z M115.428571,106.857143 C115.428571,112 112.857143,115.428571 107.714286,115.428571 L22,115.428571 C17.7142857,115.428571 12.5714286,111.142857 12.5714286,106.857143 L12.5714286,21.1428571 C12.5714286,16 17.7142857,12.5714286 22,12.5714286 L107.714286,12.5714286 C112.857143,12.5714286 115.428571,16.8571429 115.428571,21.1428571 L115.428571,106.857143 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

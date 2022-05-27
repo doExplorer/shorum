@@ -1,0 +1,172 @@
+@import '~antd/dist/antd.dark.less';
+@import './css/variable.less';
+
+@font-face {
+    font-family: 'dm';
+    font-weight: 400;
+    src: url('./assets/fonts/DM_Sans/DMSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'dm';
+    font-weight: 600;
+    src: url('./assets/fonts/DM_Sans/DMSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'dm';
+    font-weight: 800;
+    src: url('./assets/fonts/DM_Sans/DMSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: 200;
+    src: url('./assets/fonts/Poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: 400;
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: 600;
+    src: url('./assets/fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'poppins';
+    font-weight: 800;
+    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Stretch';
+    src: url('./assets/fonts/Stretch/StretchPro.otf');
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+.App {
+    font-family: 'poppins', 'dm';
+    color: #fff;
+    background: #141416;
+}
+
+.page-title {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.nowrap {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+.green {
+    color: #58bd7d;
+}
+
+.container {
+    font-family: 'poppins', 'dm', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Myriad Pro', 'Hiragino Sans GB',
+        'Microsoft YaHei', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    width: 100%;
+    position: relative;
+}
+
+input::placeholder {
+    color: @placeholder-color !important;
+}
+:-ms-input-placeholder {
+    color: @placeholder-color !important;
+}
+
+.btn-trans {
+    border: 2px solid #353945;
+    border-radius: 40px;
+    background: @bg-color;
+    font-weight: normal;
+    font-size: 14px;
+    transition: transform 0.3s;
+    color: @theme-color;
+    padding: 7px 16px;
+
+    &:hover,
+    &:focus {
+        color: @theme-color;
+        background: tint(@bg-color, 10%);
+    }
+    &:active {
+        color: rgba(@theme-color, 0.8);
+    }
+}
+
+.btn-blue {
+    font-family: 'poppins';
+    font-weight: 800;
+    color: #fff;
+    background: #1a44c0;
+    border: none;
+    border-radius: 40px;
+    display: block;
+    &:hover,
+    &:focus {
+        color: #fff;
+        border: none;
+        background: #153699;
+    }
+}
+
+.btn-grey {
+    font-family: 'poppins';
+    font-weight: 800;
+    color: #fff;
+    background: #23262f;
+    border: none;
+    border-radius: 40px;
+    display: block;
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff;
+        border: none;
+        background: #23262f;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+.ant-btn {
+    &-lg {
+        border-radius: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    &-primary {
+        color: @theme-color;
+    }
+}
+
+.common-container {
+    .app-container {
+        border-top-left-radius: @box-radius;
+        border-top-right-radius: @box-radius;
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>tip-circle-o</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="tip-circle-o" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M64,0 C28.8,0 0,28.8 0,64 C0,99.2 28.8,128 64,128 C99.2,128 128,99.2 128,64 C128,28.8 99.2,0 64,0 Z M64.3333333,117.666667 C35,117.666667 11,93.6666667 11,64.3333333 C11,35 35,11 64.3333333,11 C93.6666667,11 117.666667,35 117.666667,64.3333333 C117.666667,93.6666667 93.6666667,117.666667 64.3333333,117.666667 Z M58,48 L70,48 L70,101 L58,101 L58,48 Z M64,40 C67.3137085,40 70,37.3137085 70,34 C70,30.6862915 67.3137085,28 64,28 C60.6862915,28 58,30.6862915 58,34 C58,37.3137085 60.6862915,40 64,40 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

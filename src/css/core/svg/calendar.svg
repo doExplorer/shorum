@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>calendar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="calendar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M107.2,113.6 L20.4,113.6 L20.4,45.4 L107.2,45.4 L107.2,113.6 Z M88.6,2 L88.6,14.4 L39,14.4 L39,2 L26.6,2 L26.6,14.4 L20.4,14.4 C13.58,14.4 8,19.98 8,26.8 L8,113.6 C8,120.42 13.58,126 20.4,126 L107.2,126 C114.02,126 119.6,120.42 119.6,113.6 L119.6,26.8 C119.6,19.98 114.02,14.4 107.2,14.4 L101,14.4 L101,2 L88.6,2 Z M94.8,70.2 L63.8,70.2 L63.8,101.2 L94.8,101.2 L94.8,70.2 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>enlarge-normal</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="enlarge-normal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M20.1428571,94.8571429 L42.4285714,72.5714286 L54.4285714,72.5714286 L54.4285714,84.5714286 L32.1428571,106.857143 L54.4285714,106.857143 L54.4285714,124 L3,124 L3,72.5714286 L20.1428571,72.5714286 L20.1428571,94.8571429 Z M105.857143,33.1428571 L83.5714286,55.4285714 L71.5714286,55.4285714 L71.5714286,43.4285714 L93.8571429,21.1428571 L71.5714286,21.1428571 L71.5714286,4 L123,4 L123,55.4285714 L105.857143,55.4285714 L105.857143,33.1428571 Z" id="放大" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

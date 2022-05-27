@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>general-settings</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="general-settings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M49,60.25 L15.25,60.25 C9.25,60.25 4,55 4,49 L4,15.25 C4,9.25 9.25,4 15.25,4 L49,4 C55,4 60.25,9.25 60.25,15.25 L60.25,49 C60.25,55 55,60.25 49,60.25 Z M49,124 L15.25,124 C9.25,124 4,118.75 4,112.75 L4,79 C4,73 9.25,67.75 15.25,67.75 L49,67.75 C55,67.75 60.25,73 60.25,79 L60.25,112 C60.25,118.75 55,124 49,124 Z M96.25,124 C80.5,124 67.75,111.25 67.75,96.25 C67.75,80.5 80.5,68.5 95.5,68.5 C111.25,68.5 123.25,81.25 123.25,96.25 C124,111.25 111.25,124 96.25,124 Z M112.75,60.25 L79,60.25 C73,60.25 67.75,55 67.75,49 L67.75,15.25 C67.75,9.25 73,4 79,4 L112,4 C118.75,4 124,9.25 124,15.25 L124,49 C124,55 118.75,60.25 112.75,60.25 Z" id="通用设置" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

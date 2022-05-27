@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>radio</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="radio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M64,0 C99.2,0 128,28.8 128,64 C128,99.2 99.2,128 64,128 C28.8,128 0,99.2 0,64 C0,28.8 28.8,0 64,0 Z M64,120 C95.2,120 120,95.2 120,64 C120,32.8 95.2,8 64,8 C32.8,8 8,32.8 8,64 C8,95.2 32.8,120 64,120 Z M64,96 C46.326888,96 32,81.673112 32,64 C32,46.326888 46.326888,32 64,32 C81.673112,32 96,46.326888 96,64 C96,81.673112 81.673112,96 64,96 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

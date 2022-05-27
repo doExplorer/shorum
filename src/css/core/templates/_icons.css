@@ -1,0 +1,25 @@
+@font-face {
+	font-family: '<%= fontName %>';
+	src: url('<%= fontPath %><%= fontName %>.woff<%= cacheBusterQueryString %>') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="<%= cssClass %>-"]:before,
+[class*=" <%= cssClass %>-"]:before {
+	font-family: '<%= fontName %>' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+<% _.each(glyphs, function(glyph) { %>
+.<%= cssClass %>-<%= glyph.fileName %>:before {
+	content: "\<%= glyph.codePoint %>";
+}
+<% }); %>

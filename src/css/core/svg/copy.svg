@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M92,0 L120,32 L120,96 C120,104 112.8,112 104,112 L100,112 C100,120 92.8,128 84,128 L24,128 C15.2,128 8,120 8,112 L8,32 C8,24 15.2,16 23.2,16 L28,16 C28,8 35.2,0 44,0 L92,0 Z M84,120 C88,120 92,116 92,112 L44,112 C35.2,112 28,104 28,96 L28,24 L24,24 C19.2,24 16,28 16,32 L16,112 C16,116 20,120 24,120 L84,120 Z M112,96 L112,40 L100,40 C91.2,40 84,32 84,24 C84,24 84,17.6 84,8 L44,8 C40,8 36,12 36,16 L36,96 C36,100 40,104 44,104 L104,104 C108,104 112,100 112,96 Z M100,32 L112,32 L92,8 L92,20 C92,24 96,32 100,32 Z M92,76 L56,76 C53.6,76 52,77.6 52,80 C52,82.4 53.6,84 56,84 L92,84 C94.4,84 96,82.4 96,80 C96,77.6 94.4,76 92,76 Z M92,56 L56,56 C53.6,56 52,57.6 52,60 C52,62.4 53.6,64 56,64 L92,64 C94.4,64 96,62.4 96,60 C96,57.6 94.4,56 92,56 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

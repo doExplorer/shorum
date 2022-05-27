@@ -1,0 +1,106 @@
+@import '../../css/variable.less';
+
+.room-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: @font-color;
+
+    .room-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 33px 0;
+
+        &.app-list {
+            padding-bottom: 0;
+        }
+    }
+
+    .room-title {
+        padding: 39px 26px;
+        border-bottom: 1px solid @bg-color;
+
+        &:not(.is-mine) {
+            padding-bottom: 20px;
+        }
+    }
+
+    .room-avatar {
+        display: inline-block;
+        width: 157px;
+        height: 157px;
+        border: 1px solid @bg-color;
+        border-radius: 10px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        vertical-align: top;
+    }
+    .room-info {
+        display: inline-block;
+        width: calc(100% - 157px);
+        padding-left: 14px;
+        vertical-align: top;
+    }
+
+    .room-name {
+        font-size: 23px;
+        line-height: 33px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .room-description {
+        font-size: 16px;
+        line-height: 21px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .room-address {
+        display: inline-block;
+        padding: 0 25px;
+        background: @bg-color;
+        border-radius: 13px;
+        color: @theme-color;
+        height: 26px;
+        line-height: 26px;
+        margin: 15px 0;
+    }
+
+    .switch-room-type {
+        margin-top: 15px;
+    }
+
+    .room-footer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 47px;
+
+        .room-avatar-list {
+            flex: 1;
+            overflow: hidden;
+        }
+    }
+
+    .nft-card {
+        width: 267px;
+
+        .card {
+            cursor: pointer;
+        }
+    }
+}
+
+.nft-drawer {
+    .ant-drawer-body {
+        padding: 0;
+    }
+}

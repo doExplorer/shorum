@@ -1,0 +1,49 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "module": "commonjs",
+        "target": "ESNext",
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "config": [
+                "src/config"
+            ],
+            "components/*": [
+                "src/components/*"
+            ],
+            "contract/*": [
+                "src/contract/*"
+            ],
+            "lib/*": [
+                "src/lib/*"
+            ],
+            "@/*": [
+                "src/*"
+            ],
+            "hash-history": [
+                "src/js/hash-history"
+            ],
+            "$axios": [
+                "src/js/axios"
+            ],
+        }
+    },
+    "files": [
+        "./src/typings/index.d.ts",
+        "./node_modules/tsx-control-statements/index.d.tsx"
+    ],
+    "include": [
+        "./src/**/*"
+    ]
+}

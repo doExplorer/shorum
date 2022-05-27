@@ -1,0 +1,47 @@
+@import '../../css/variable.less';
+
+.module-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    .app-title {
+        font-family: 'Stretch';
+        display: flex;
+        justify-content: center;
+        width: 142px;
+        line-height: 142px;
+        font-weight: 800;
+        color: #fcfcfd;
+        font-size: 117px;
+        height: 100%;
+        writing-mode: vertical-rl;
+        overflow: hidden;
+    }
+
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: @theme-color;
+        overflow: auto;
+
+        .app-body {
+            flex: 1;
+        }
+
+        .ant-form-item-label {
+            & > label {
+                font-size: 23px;
+                color: @font-color;
+            }
+        }
+
+        .ant-input,
+        .ant-input-number,
+        .ant-upload {
+            color: @font-color;
+        }
+    }
+}

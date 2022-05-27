@@ -1,0 +1,43 @@
+@import '../../css/variable.less';
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 19px 40px;
+    background-color: @theme-color;
+    height: @header-height;
+    .logo {
+        width: 135px;
+    }
+    .btn-trans {
+        margin-left: 6px;
+        display: inline-block;
+        font-family: 'dm';
+        font-weight: normal;
+        cursor: pointer;
+    }
+    .header-search {
+        display: inline-flex;
+        flex: 1;
+        justify-content: center;
+
+        .search-input {
+            width: 50%;
+
+            .ant-select-selector {
+                border-radius: 20px;
+                padding: 0 25px;
+                background-color: @bg-color;
+
+                .ant-select-selection-search {
+                    position: absolute;
+                    top: 0;
+                    right: 25px;
+                    bottom: 0;
+                    left: 25px;
+                }
+            }
+        }
+    }
+}

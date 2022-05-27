@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>add-square-o</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="add-square-o" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M109,4 L19,4 C10.75,4 4,10.75 4,19 L4,109 C4,117.25 10.75,124 19,124 L109,124 C117.25,124 124,117.25 124,109 L124,19 C124,10.75 117.25,4 109,4 Z M116.5,109 C116.5,112.75 113.5,116.5 109,116.5 L19,116.5 C14.5,116.5 11.5,112.75 11.5,109 L11.5,19 C11.5,15.25 14.5,11.5 19,11.5 L109,11.5 C113.5,11.5 116.5,15.25 116.5,19 L116.5,109 Z M88,60 L68,60 L68,40 C68,37.6 66.4,36 64,36 C61.6,36 60,37.6 60,40 L60,60 L40,60 C37.6,60 36,61.6 36,64 C36,66.4 37.6,68 40,68 L60,68 L60,88 C60,90.4 61.6,92 64,92 C66.4,92 68,90.4 68,88 L68,68 L88,68 C90.4,68 92,66.4 92,64 C92,61.6 90.4,60 88,60 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

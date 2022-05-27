@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>scheduling</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="scheduling" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M112,0 C116.416,0 120,3.584 120,8 L120,120 C120,124.416 116.416,128 112,128 L16,128 C11.584,128 8,124.416 8,120 L8,32.248 L40.248,0 L112,0 Z M35,46 C32.790861,46 31,47.790861 31,50 C31,52.209139 32.790861,54 35,54 L93,54 C95.209139,54 97,52.209139 97,50 C97,47.790861 95.209139,46 93,46 L35,46 Z M35,94 C32.790861,94 31,95.790861 31,98 C31,100.209139 32.790861,102 35,102 L93,102 C95.209139,102 97,100.209139 97,98 C97,95.790861 95.209139,94 93,94 L35,94 Z M35,70 C32.790861,70 31,71.790861 31,74 C31,76.209139 32.790861,78 35,78 L93,78 C95.209139,78 97,76.209139 97,74 C97,71.790861 95.209139,70 93,70 L35,70 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

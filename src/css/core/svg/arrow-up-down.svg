@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-up-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="arrow-up-down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M64.6666667,115.808 L29.1146667,85.3333333 L22,91.4346667 L64.6666667,128 L107.333333,91.4346667 L100.218667,85.3333333 L64.6666667,115.808 Z M64.6666667,12.192 L100.218667,42.6666667 L107.333333,36.5653333 L64.6666667,0 L22,36.5653333 L29.1146667,42.6666667 L64.6666667,12.192 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

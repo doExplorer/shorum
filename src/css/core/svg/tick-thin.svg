@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>tick-thin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="tick-thin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M43.156616,98.5304962 L114.643772,13.3354212 C117.084116,10.427133 121.420038,10.0477889 124.328327,12.4881325 C127.236615,14.928476 127.615959,19.2643988 125.175615,22.172687 L49.8077042,111.992666 C49.3783849,112.504309 48.8903977,112.937681 48.361837,113.2912 C45.8103058,115.60301 41.8798686,115.73488 39.1682244,113.45954 L2.77918448,82.9255103 C-0.182338161,80.4404978 -0.568625909,76.0252086 1.91638665,73.063686 C4.40139921,70.1021633 8.81668837,69.7158756 11.778211,72.2008881 L43.156616,98.5304962 Z" id="Combined-Shape" fill="#000000" transform="translate(63.531280, 62.988557) rotate(1.000000) translate(-63.531280, -62.988557) "></path>
+    </g>
+</svg>

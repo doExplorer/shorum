@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>cross-circle-o</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="cross-circle-o" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M64,0 C28.8,0 0,28.8 0,64 C0,99.2 28.8,128 64,128 C99.2,128 128,99.2 128,64 C128,28.8 99.2,0 64,0 Z M64,117.333333 C34.6666667,117.333333 10.6666667,93.3333333 10.6666667,64 C10.6666667,34.6666667 34.6666667,10.6666667 64,10.6666667 C93.3333333,10.6666667 117.333333,34.6666667 117.333333,64 C117.333333,93.3333333 93.3333333,117.333333 64,117.333333 Z M86.4,33.6 L64,56.5333333 L41.6,33.6 L33.6,41.6 L56.5333333,64 L33.6,86.4 L41.6,94.4 L64,71.4666667 L86.4,94.4 L94.4,86.4 L71.4666667,64 L94.4,41.6 L86.4,33.6 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

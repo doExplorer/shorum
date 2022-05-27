@@ -1,0 +1,58 @@
+@import '../../css/variable.less';
+
+@switch-radius: 19px;
+
+.app-form-switch {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    min-width: 60px;
+    margin: 0;
+    background: @bg-color;
+    border-radius: @switch-radius;
+    border: 1px solid @bg-color;
+
+    & input[type='checkbox'] {
+        display: none;
+    }
+
+    & .app-switch-inner {
+        display: flex;
+        position: relative;
+        height: 36px;
+        line-height: 36px;
+        cursor: pointer;
+        user-select: none;
+
+        & .on,
+        & .off {
+            display: inline-block;
+            height: 100%;
+            padding: 0 22px;
+            color: @theme-color;
+            border-radius: @switch-radius;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 300;
+
+            & > * {
+                vertical-align: middle;
+            }
+        }
+
+        & .off {
+            color: @bg-color;
+            background: @theme-color;
+        }
+    }
+    & :checked + .app-switch-inner {
+        & .on {
+            color: @bg-color;
+            background: @theme-color;
+        }
+        & .off {
+            color: @theme-color;
+            background: @bg-color;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import '../../css/variable.less';
+
+.module-landing {
+    .app-header {
+        border-top-left-radius: @box-radius-lg;
+    }
+}
+
+.landing-page {
+    .app-container {
+        border-bottom-right-radius: @box-radius-lg;
+    }
+    .footer-btns {
+        display: flex;
+        padding: 27px 26px 32px;
+        border-top: 1px solid @bg-color;
+    }
+
+    .show-card-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        &-list {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            padding-top: 50px;
+        }
+        &-footer {
+            position: relative;
+            width: 100%;
+            height: 100px;
+
+            .box-image {
+                position: absolute;
+                top: 23px;
+                right: 25px;
+                width: 304px;
+                height: 38px;
+                background-image: url('../../assets/EExpploree.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}

@@ -30,6 +30,7 @@ export const chainIdMapping = {
     128: 'HECO Mainnet',
     97: 'BSC Testnet',
     80001: 'Mumbai',
+    137: 'Polygon',
 };
 
 // if (CHAIN_ENV === "kovan") {

@@ -116,7 +116,10 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
                         <Input bordered={false} placeholder="Please input a description" />
                     </Form.Item> */}
 
-                    <Form.Item name="backFee" label="Choose back fee (in USDT)" rules={[{ required: true, message: 'Please input back fee!' }]}>
+                    <Form.Item
+                        name="backFee"
+                        label="Choose back fee (in USDT)"
+                        rules={[{ required: true, message: 'Please input back fee!' }]}>
                         <Input bordered={false} placeholder="Please choose a back fee (in USDT)" />
                     </Form.Item>
                 </div>

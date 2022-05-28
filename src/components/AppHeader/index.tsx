@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import { Web3Context } from '@/context/Web3Context';
+import React, { useContext } from 'react';
 // import { useWallet } from 'use-wallet';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
@@ -7,6 +6,7 @@ import { LogoutOutlined } from '@ant-design/icons';
 import ConnectWallet from 'components/ConnectWallet';
 import { loggedOut, isLoggedOut } from 'components/ConnectWallet/utils';
 import hashHistory from 'hash-history';
+import { Web3Context } from '@/context/Web3Context';
 import SearchInput from './SearchInput';
 
 import Logo from '../../assets/logo.png';
@@ -17,7 +17,7 @@ import './style.less';
 export default function AppHeader() {
     // const wallet = useWallet();
     // const { account } = wallet;
-    const {account, resetWallet} = useContext(Web3Context)
+    const { account, resetWallet } = useContext(Web3Context);
 
     const handleClick = () => {
         hashHistory.push('/room');
@@ -25,7 +25,7 @@ export default function AppHeader() {
 
     const handleDropdownItemClick = ({ key }: { key: string }) => {
         // wallet.reset();
-        resetWallet()
+        resetWallet();
         loggedOut();
         hashHistory.push('/landing');
     };

@@ -23,7 +23,6 @@ class CreateStore {
     }) => {
         Object.assign(this.roomInfo, info);
 
-
         // do web3.js here
     };
 

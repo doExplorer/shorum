@@ -64,13 +64,16 @@ const Room = observer(function () {
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
-                                                <Switch
+                                                {/* <Switch
                                                     value={store.roomType}
                                                     unCheckedChildren="Onwer"
                                                     checkedChildren={room?.name || ''}
                                                     values={store.roomTypeValues}
                                                     onChange={store.handleRoomTypeSwitch}
-                                                />
+                                                /> */}
+                                                <Button type="primary" size="large" ghost>
+                                                    Owned
+                                                </Button>
                                             </When>
                                             <Otherwise>
                                                 <Choose>
@@ -94,13 +97,16 @@ const Room = observer(function () {
                                 </div>
                                 <If condition={!isMine}>
                                     <div className="switch-room-type">
-                                        <Switch
+                                        {/* <Switch
                                             value={store.roomType}
                                             unCheckedChildren="Onwer"
                                             checkedChildren={room?.name || ''}
                                             values={store.roomTypeValues}
                                             onChange={store.handleRoomTypeSwitch}
-                                        />
+                                        /> */}
+                                        <Button type="primary" size="large" ghost>
+                                            Owned
+                                        </Button>
                                     </div>
                                 </If>
                             </div>
@@ -138,7 +144,7 @@ const Room = observer(function () {
                 closable={false}
                 mask={false}
                 visible={store.nftVisible}
-                height="calc(100% - 78px)">
+                height="calc(100% - 93px)">
                 <Nft onClose={store.onNftBack} />
             </Drawer>
         </ModuleContainer>

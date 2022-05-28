@@ -1,11 +1,12 @@
 import 'core-js';
+import 'antd/dist/antd.dark.less';
 import './style.less';
 import './app.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { UseWalletProvider } from 'use-wallet';
-import { Web3ContextProvider } from './context/Web3Context';
 import config from 'config';
+import { Web3ContextProvider } from './context/Web3Context';
 import reportWebVitals from './reportWebVitals';
 
 import router from './router';

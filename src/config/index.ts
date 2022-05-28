@@ -37,8 +37,14 @@ export const supportChains = [1, 137, 80001];
 
 export const chainKeyMapping = {
     1: 'eth',
-    137: 'matic',
+    137: 'polygon',
     80001: 'mumbai',
+};
+
+export const chainThemeMapping = {
+    1: '#ffeb3',
+    137: '#3169FF',
+    80001: '#FF7F33',
 };
 
 // if (CHAIN_ENV === "kovan") {
@@ -51,6 +57,7 @@ export default {
     chainIdMapping,
     supportChains,
     chainKeyMapping,
+    chainThemeMapping,
     ...envConf,
 };
 

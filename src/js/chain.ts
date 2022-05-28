@@ -1,9 +1,6 @@
-import { func } from 'prop-types';
-import { chainKeyMapping } from 'config';
-
 let chainId: number;
 
-const CHAIN_ID_STORAGE = 'shorum.chain';
+const CHAIN_ID_STORAGE = 'SHROUM_CHAIN';
 
 export function setChain(id: number) {
     chainId = id;
@@ -19,8 +16,4 @@ export function getChain(): number {
         // eslint-disable-next-line no-empty
     } catch (e) {}
     return chainId;
-}
-
-export function getChainKey() {
-    return (chainKeyMapping as { [key: number]: string })[getChain()];
 }

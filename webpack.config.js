@@ -10,6 +10,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
+const ThemeColorWebpackPlugin = require('theme-color-webpack-plugin');
 const DevServer = require('webpack-dev-server');
 
 const port = process.env.npm_package_config_port;
@@ -30,6 +31,19 @@ module.exports = function (env, args = {}) {
         localIPPromise.then(
             (localIP) => {
                 const alias = require(path.join(ROOT_PATH, 'webpack.alias.js'));
+
+                const lessOptions = {
+                    math: 'always',
+                    plugins: [
+                        new LessPluginAutoPrefix({
+                            browsers: ['last 2 versions', '> 1%'],
+                        }),
+                    ],
+                    modifyVars: {
+                        'primary-color': '#000000',
+                    },
+                    javascriptEnabled: true,
+                };
 
                 let config = {
                     mode: mode,
@@ -73,18 +87,7 @@ module.exports = function (env, args = {}) {
                                         loader: 'less-loader',
                                         options: {
                                             sourceMap: false,
-                                            lessOptions: {
-                                                math: 'always',
-                                                plugins: [
-                                                    new LessPluginAutoPrefix({
-                                                        browsers: ['last 2 versions', '> 1%'],
-                                                    }),
-                                                ],
-                                                modifyVars: {
-                                                    'primary-color': '#000000',
-                                                },
-                                                javascriptEnabled: true,
-                                            },
+                                            lessOptions,
                                         },
                                     },
                                 ],
@@ -182,6 +185,14 @@ module.exports = function (env, args = {}) {
                             title: 'TypeScript',
                             excludeWarnings: true,
                             skipSuccessful: true,
+                        }),
+                        new ThemeColorWebpackPlugin({
+                            stylesDir: path.join(__dirname, './src'), // styles directory containing all less files
+                            varFile: path.join(__dirname, './src/css/variable.less'), // include all color variables in `varFile` that you want to change dynamically
+                            themeVariables: ['@theme-color'], // (Optional) Specify variables to use (If not set, all variables in varFile will be used)
+                            outputFilePath: path.join(__dirname, './public/color.less'), // if provided, file will be created with generated less/styles
+                            include: ['./**/*.less'], // (Optional) Specify the included file
+                            options: lessOptions, // (Optional) less options
                         }),
                         new CleanWebpackPlugin(),
                     ],

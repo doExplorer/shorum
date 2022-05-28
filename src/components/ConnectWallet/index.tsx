@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Web3Context } from '@/context/Web3Context';
 import { useWallet } from 'use-wallet';
 
 import NetworkModal from 'components/NetworkModal';
-import config, { chainIdMapping } from 'config';
-import { setChain } from '@/js/chain';
+import config, { chainIdMapping, supportChains } from 'config';
+import utils from 'utils';
+import { Web3Context } from '@/context/Web3Context';
 import { loggedIn } from './utils';
 import './style.less';
 
 export default function ConnectWallet(props: { triggerConnect: boolean }) {
     const { triggerConnect } = props;
-    const { connectWallet } = useContext(Web3Context)
-    
+    const { connectWallet } = useContext(Web3Context);
+
     const [networkError, setNetworkError] = useState('');
     // const wallet = useWallet();
 
@@ -22,11 +22,7 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
 
     //         console.log('wallet id', walletChainId);
 
-    //         if (
-    //             walletChainId &&
-    //             !Number.isNaN(walletChainId) &&
-    //             !(chainIdMapping as { [key: number]: string })[walletChainId]
-    //         ) {
+    //         if (walletChainId && !Number.isNaN(walletChainId) && !supportChains.includes(walletChainId)) {
     //             setNetworkError(
     //                 `${
     //                     chainIdMapping[configChainId as 1 | 42 | 56 | 128 | 97 | 80001]
@@ -34,7 +30,7 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
     //             );
     //         } else {
     //             if (walletChainId) {
-    //                 setChain(walletChainId);
+    //                 utils.setChain(walletChainId);
     //             }
     //             setNetworkError('');
     //         }
@@ -61,7 +57,7 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
 
             window.ethereum.on('chainChanged', (chainId: number) => {
                 console.log('wallet id', chainId);
-                setChain(chainId);
+                utils.setChain(chainId);
                 connectWallet();
                 window.location.reload();
             });

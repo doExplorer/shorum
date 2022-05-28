@@ -11,7 +11,10 @@ const getWalletInfo = async function (address: string, chain: string) {
 };
 
 const getRelatedAddress = async function (address: string, option = 'RSS3_Follow', algo = 'OVERLAP') {
-    const related = await knn.getRelatedAddress(address, (option = 'RSS3_Follow'), (algo = 'OVERLAP'));
+    const related = (await knn.getRelatedAddress(address, (option = 'RSS3_Follow'), (algo = 'OVERLAP'))) as {
+        total: number;
+        data: { address: string }[];
+    };
     return related;
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Select } from 'antd';
+import { Select, message } from 'antd';
 import Web3Utils from 'web3-utils';
 import _ from 'lodash';
 import config from 'config';
@@ -53,6 +53,19 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
         this.setState({ value: '' });
     };
 
+    handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            const { value } = e.target as HTMLInputElement;
+            const trimValue = _.trim(value);
+            if (Web3Utils.isAddress(trimValue, config.chainId)) {
+                hashHistory.push(`/room/${value}`);
+                this.setState({ value: '' });
+            } else {
+                message.error('Invalid address!');
+            }
+        }
+    };
+
     render() {
         const { placeholder, className, style } = this.props;
         const options = this.state.data.map((d) => <Option key={d.value}>{d.text}</Option>);
@@ -69,6 +82,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
                 onSearch={this.handleSearch}
                 onChange={this.handleChange}
                 notFoundContent={null}
+                onInputKeyDown={this.handleKeyDown}
                 size="large">
                 {options}
             </Select>

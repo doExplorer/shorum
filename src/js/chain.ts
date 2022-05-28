@@ -1,6 +1,6 @@
 let chainId: number;
 
-const CHAIN_ID_STORAGE = 'shorum.chain';
+const CHAIN_ID_STORAGE = 'SHROUM_CHAIN';
 
 export function setChain(id: number) {
     chainId = id;

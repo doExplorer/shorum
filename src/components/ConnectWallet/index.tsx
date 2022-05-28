@@ -3,6 +3,7 @@ import { useWallet } from 'use-wallet';
 
 import NetworkModal from 'components/NetworkModal';
 import config, { chainIdMapping } from 'config';
+import { setChain } from '@/js/chain';
 import { loggedIn } from './utils';
 import './style.less';
 
@@ -29,6 +30,9 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
                     }, your wallet id is ${walletChainId}`
                 );
             } else {
+                if (walletChainId) {
+                    setChain(walletChainId);
+                }
                 setNetworkError('');
             }
 
@@ -53,6 +57,8 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
             });
 
             window.ethereum.on('chainChanged', (chainId: number) => {
+                console.log('wallet id', chainId);
+                setChain(chainId);
                 connectWallet();
                 window.location.reload();
             });

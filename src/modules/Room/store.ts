@@ -1,7 +1,9 @@
 import { observable, action, computed } from 'mobx';
 import { message } from 'antd';
+import utils from 'utils';
 import $axios from '$axios';
 import ipfs from '@/js/ipfs';
+import walleApi from '@/js/wallet';
 import { IRoom } from '../Create/interface';
 import { INft } from './interface';
 import nftStore from './Nft/store';
@@ -49,6 +51,12 @@ class RoomStore {
         this.nftVisible = false;
         this.roomType = 'owner';
         this.isBacked = false;
+        this.address = fetchAccount;
+
+        const chain = utils.getChainKey();
+        walleApi.getWalletInfo(fetchAccount, chain).then(({ address, nfts }) => {
+            console.log(address, nfts);
+        });
 
         // $axios.post(`/api/wallet/${fetchAccount}`, { chain: 'eth' });
 

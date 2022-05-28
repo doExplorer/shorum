@@ -34,9 +34,12 @@
             "hash-history": [
                 "src/js/hash-history"
             ],
+            "utils": [
+                "src/js/utils"
+            ],
             "$axios": [
                 "src/js/axios"
-            ],
+            ]
         }
     },
     "files": [

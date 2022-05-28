@@ -1,5 +1,7 @@
 import 'element-closest-polyfill';
 
+import { setChain, getChain, getChainKey } from './chain';
+
 // 修复 Windows10 上对是否支持触摸事件的误判
 const isTouchSupported = 'ontouchstart' in document.documentElement && !window.navigator.userAgent.includes('Windows');
 
@@ -36,6 +38,12 @@ class Utils {
     public closest(node: HTMLElement | EventTarget, selector: string): HTMLElement {
         return (node as HTMLElement).closest(selector);
     }
+
+    public setChain = setChain;
+
+    public getChain = getChain;
+
+    public getChainKey = getChainKey;
 }
 
 export default new Utils();

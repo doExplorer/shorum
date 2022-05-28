@@ -13,7 +13,7 @@ const App = (
     <UseWalletProvider
         connectors={{
             injected: {
-                chainId: [config.chainId],
+                chainId: config.supportChains,
             },
         }}>
         {router}

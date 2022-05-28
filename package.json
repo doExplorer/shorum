@@ -68,6 +68,7 @@
     "eslint-config-pandora-typescript": "2.3.0",
     "fork-ts-checker-notifier-webpack-plugin": "6.0.0",
     "fork-ts-checker-webpack-plugin": "7.2.11",
+    "graphql": "16.5.0",
     "graphql-request": "4.2.0",
     "history": "4.10.1",
     "html-to-react": "1.4.8",

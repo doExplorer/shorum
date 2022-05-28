@@ -29,8 +29,16 @@ export const chainIdMapping = {
     56: 'BSC Mainnet',
     128: 'HECO Mainnet',
     97: 'BSC Testnet',
-    80001: 'Mumbai',
     137: 'Polygon',
+    80001: 'Mumbai',
+};
+
+export const supportChains = [1, 137, 80001];
+
+export const chainKeyMapping = {
+    1: 'eth',
+    137: 'matic',
+    80001: 'mumbai',
 };
 
 // if (CHAIN_ENV === "kovan") {
@@ -41,6 +49,8 @@ export const chainIdMapping = {
 
 export default {
     chainIdMapping,
+    supportChains,
+    chainKeyMapping,
     ...envConf,
 };
 

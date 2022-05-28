@@ -16,7 +16,13 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
             const configChainId = config.chainId;
             const walletChainId = parseInt(window.ethereum ? window.ethereum.chainId : '');
 
-            if (walletChainId && !Number.isNaN(walletChainId) && configChainId !== walletChainId) {
+            console.log('wallet id', walletChainId);
+
+            if (
+                walletChainId &&
+                !Number.isNaN(walletChainId) &&
+                !(chainIdMapping as { [key: number]: string })[walletChainId]
+            ) {
                 setNetworkError(
                     `${
                         chainIdMapping[configChainId as 1 | 42 | 56 | 128 | 97 | 80001]

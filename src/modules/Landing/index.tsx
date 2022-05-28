@@ -32,7 +32,6 @@ const LandingPage = observer(function () {
     }, []);
 
     const roomData = Array.from(store.roomData);
-    console.log(roomData.length, roomData);
 
     return (
         <ModuleContainer

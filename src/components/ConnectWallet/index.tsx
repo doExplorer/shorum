@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useWallet } from 'use-wallet';
 
 import NetworkModal from 'components/NetworkModal';
-import config, { chainIdMapping } from 'config';
+import config, { chainIdMapping, supportChains } from 'config';
 import utils from 'utils';
 import { loggedIn } from './utils';
 import './style.less';
@@ -19,11 +19,7 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
 
             console.log('wallet id', walletChainId);
 
-            if (
-                walletChainId &&
-                !Number.isNaN(walletChainId) &&
-                !(chainIdMapping as { [key: number]: string })[walletChainId]
-            ) {
+            if (walletChainId && !Number.isNaN(walletChainId) && !supportChains.includes(walletChainId)) {
                 setNetworkError(
                     `${
                         chainIdMapping[configChainId as 1 | 42 | 56 | 128 | 97 | 80001]

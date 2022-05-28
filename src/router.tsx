@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Router, Switch as RouterSwitch, Redirect, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
+import { observer } from 'mobx-react';
+import utils from 'utils';
 
+import Theme from 'components/Theme/index';
 import Page from 'components/Page/index';
 import ModuleWrapper from 'components/ModuleWrapper/index';
 
@@ -16,26 +19,27 @@ import Create from './modules/Create';
 import Invite from './modules/Invite';
 import Room from './modules/Room';
 
-const MainWithRouter = withRouter(
-    class Main extends React.Component<RouteComponentProps> {
-        static childContextTypes = {
+@observer
+class Main extends React.Component<RouteComponentProps> {
+    static childContextTypes = {
+        // 获取当前页面的地址
+        location: PropTypes.object,
+    };
+
+    getChildContext(): {} {
+        return {
             // 获取当前页面的地址
-            location: PropTypes.object,
+            location: this.props.location,
         };
+    }
 
-        getChildContext(): {} {
-            return {
-                // 获取当前页面的地址
-                location: this.props.location,
-            };
-        }
+    render(): React.ReactNode {
+        const { location } = this.props;
+        const module = `module${location.pathname.replace(/\//g, '-')}`;
 
-        render(): React.ReactNode {
-            const { location } = this.props;
-            const module = `module${location.pathname.replace(/\//g, '-')}`;
-
-            return (
-                <ConfigProvider locale={enUS}>
+        return (
+            <ConfigProvider locale={enUS}>
+                <Theme color={utils.getChainTheme()}>
                     <div className="layout-responsive-left-fixed page-container">
                         <div className="page-content">
                             <div className={`page-body ${module}`}>
@@ -54,11 +58,13 @@ const MainWithRouter = withRouter(
                             </div>
                         </div>
                     </div>
-                </ConfigProvider>
-            );
-        }
+                </Theme>
+            </ConfigProvider>
+        );
     }
-);
+}
+
+const MainWithRouter = withRouter(Main);
 
 export default (
     <Router history={hashHistory}>

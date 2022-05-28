@@ -1,6 +1,6 @@
 import 'element-closest-polyfill';
 
-import { setChain, getChain, getChainKey } from './chain';
+import mainStore from './main.tore';
 
 // 修复 Windows10 上对是否支持触摸事件的误判
 const isTouchSupported = 'ontouchstart' in document.documentElement && !window.navigator.userAgent.includes('Windows');
@@ -39,11 +39,28 @@ class Utils {
         return (node as HTMLElement).closest(selector);
     }
 
-    public setChain = setChain;
+    public setChain = mainStore.setChain;
 
-    public getChain = getChain;
+    public getChain = mainStore.getChain;
 
-    public getChainKey = getChainKey;
+    public getChainKey = mainStore.getChainKey;
+
+    public getChainTheme = mainStore.getChainTheme;
+
+    /**
+     * 将任意输入转成Promise对象
+     * 适合用在开发组件过程中，使用后就很容易地让一个属性支持三种类型：数值，函数和返回Promise对象的函数
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+    public promisify(value: any): Promise<any> {
+        if (typeof value === 'function') {
+            value = value();
+        }
+        if (!value || typeof value.then !== 'function') {
+            value = Promise.resolve(value);
+        }
+        return value;
+    }
 }
 
 export default new Utils();

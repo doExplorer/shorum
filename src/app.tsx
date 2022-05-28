@@ -1,4 +1,5 @@
 import 'core-js';
+import 'antd/dist/antd.dark.less';
 import './style.less';
 import './app.less';
 import React from 'react';

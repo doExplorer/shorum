@@ -100,11 +100,11 @@ class Theme extends React.PureComponent<ThemeProps, ThemeState> {
 
     changeThemeColor = (color: string): void => {
         this._changeThemeColor(color, this.props.lessSource);
+        this.setState({ color });
     };
 
     _changeThemeColor = (color: string, sources: string | string[]): void => {
         renderLessSourcesWithThemeColor(sources, color);
-        this.setState({ color });
     };
 
     render(): React.ReactNode {

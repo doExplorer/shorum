@@ -4,6 +4,7 @@ import './app.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { UseWalletProvider } from 'use-wallet';
+import { Web3ContextProvider } from './context/Web3Context';
 import config from 'config';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +17,7 @@ const App = (
                 chainId: config.supportChains,
             },
         }}>
-        {router}
+        <Web3ContextProvider>{router}</Web3ContextProvider>
     </UseWalletProvider>
 );
 ReactDOM.render(App, document.getElementById('app'));

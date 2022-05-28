@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Web3Context } from '@/context/Web3Context';
 import { useWallet } from 'use-wallet';
 
 import NetworkModal from 'components/NetworkModal';
@@ -9,42 +10,44 @@ import './style.less';
 
 export default function ConnectWallet(props: { triggerConnect: boolean }) {
     const { triggerConnect } = props;
+    const { connectWallet } = useContext(Web3Context)
+    
     const [networkError, setNetworkError] = useState('');
-    const wallet = useWallet();
+    // const wallet = useWallet();
 
-    const connectWallet = () => {
-        if (window.ethereum) {
-            const configChainId = config.chainId;
-            const walletChainId = parseInt(window.ethereum ? window.ethereum.chainId : '');
+    // const connectWallet = () => {
+    //     if (window.ethereum) {
+    //         const configChainId = config.chainId;
+    //         const walletChainId = parseInt(window.ethereum ? window.ethereum.chainId : '');
 
-            console.log('wallet id', walletChainId);
+    //         console.log('wallet id', walletChainId);
 
-            if (
-                walletChainId &&
-                !Number.isNaN(walletChainId) &&
-                !(chainIdMapping as { [key: number]: string })[walletChainId]
-            ) {
-                setNetworkError(
-                    `${
-                        chainIdMapping[configChainId as 1 | 42 | 56 | 128 | 97 | 80001]
-                    }, your wallet id is ${walletChainId}`
-                );
-            } else {
-                if (walletChainId) {
-                    setChain(walletChainId);
-                }
-                setNetworkError('');
-            }
+    //         if (
+    //             walletChainId &&
+    //             !Number.isNaN(walletChainId) &&
+    //             !(chainIdMapping as { [key: number]: string })[walletChainId]
+    //         ) {
+    //             setNetworkError(
+    //                 `${
+    //                     chainIdMapping[configChainId as 1 | 42 | 56 | 128 | 97 | 80001]
+    //                 }, your wallet id is ${walletChainId}`
+    //             );
+    //         } else {
+    //             if (walletChainId) {
+    //                 setChain(walletChainId);
+    //             }
+    //             setNetworkError('');
+    //         }
 
-            if (wallet && wallet.status !== 'connected') {
-                wallet.connect().then(() => {
-                    loggedIn();
-                });
-            }
-        } else {
-            alert('Wallet not found on your device');
-        }
-    };
+    //         if (wallet && wallet.status !== 'connected') {
+    //             wallet.connect().then(() => {
+    //                 loggedIn();
+    //             });
+    //         }
+    //     } else {
+    //         alert('Wallet not found on your device');
+    //     }
+    // };
 
     useEffect(() => {
         window.addEventListener('ethereum#initialized', connectWallet, {

@@ -1,5 +1,6 @@
-import React from 'react';
-import { useWallet } from 'use-wallet';
+import React, {useContext} from 'react';
+import { Web3Context } from '@/context/Web3Context';
+// import { useWallet } from 'use-wallet';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
@@ -14,18 +15,19 @@ import Logo from '../../assets/logo.png';
 import './style.less';
 
 export default function AppHeader() {
-    const wallet = useWallet();
-    const { account } = wallet;
+    // const wallet = useWallet();
+    // const { account } = wallet;
+    const {account, resetWallet} = useContext(Web3Context)
 
     const handleClick = () => {
         hashHistory.push('/room');
     };
 
     const handleDropdownItemClick = ({ key }: { key: string }) => {
-        wallet.reset();
+        // wallet.reset();
+        resetWallet()
         loggedOut();
         hashHistory.push('/landing');
-        console.log('wallet status', wallet.status, wallet.isConnected());
     };
 
     return (
@@ -37,7 +39,7 @@ export default function AppHeader() {
                 <SearchInput placeholder="Search..." />
             </div>
             <div className="header-right">
-                {wallet.status === 'connected' && account ? (
+                {account ? (
                     <>
                         <Dropdown
                             overlay={

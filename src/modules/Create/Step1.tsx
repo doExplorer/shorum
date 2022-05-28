@@ -63,7 +63,7 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
 
         values.avatar = avatarUrl;
         store.saveData(values);
-        onNext();
+        // onNext();
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -112,13 +112,20 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
                         </Upload>
                     </Form.Item>
 
-                    <Form.Item name="description" label="Add a description for your shorum">
+                    {/* <Form.Item name="description" label="Add a description for your shorum">
                         <Input bordered={false} placeholder="Please input a description" />
+                    </Form.Item> */}
+
+                    <Form.Item name="backFee" label="Choose back fee (in USDT)" rules={[{ required: true, message: 'Please input back fee!' }]}>
+                        <Input bordered={false} placeholder="Please choose a back fee (in USDT)" />
                     </Form.Item>
                 </div>
                 <div className="page-form-footer">
-                    <Button type="primary" htmlType="submit" size="large">
+                    {/* <Button type="primary" htmlType="submit" size="large">
                         Next
+                    </Button> */}
+                    <Button type="primary" htmlType="submit" size="large">
+                        Submit
                     </Button>
                 </div>
             </Form>

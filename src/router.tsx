@@ -10,7 +10,7 @@ import enUS from 'antd/lib/locale/en_US';
 import { ConfigProvider } from 'antd';
 import hashHistory from './js/hash-history';
 
-import Swap from './modules/Swap';
+// import Swap from './modules/Swap';
 import Landing from './modules/Landing';
 import Create from './modules/Create';
 import Invite from './modules/Invite';
@@ -46,7 +46,7 @@ const MainWithRouter = withRouter(
                                             <Route component={Create} path="/create" />
                                             <Route component={Invite} path="/invite" />
                                             <Route component={Room} path="/room/:id?" />
-                                            <Route path="/swap" component={Swap} />
+                                            {/* <Route path="/swap" component={Swap} /> */}
                                             <Redirect to="/landing" />
                                         </RouterSwitch>
                                     </ModuleWrapper>

@@ -15,6 +15,7 @@ const DevServer = require('webpack-dev-server');
 const port = process.env.npm_package_config_port;
 const target = `${process.cwd()}/dist`;
 const REACT_APP_CHAIN_ENV = 'mumbai';
+const SERVER_PREFIX = 'https://shorum.herokuapp.com';
 
 const ROOT_PATH = require('path').resolve(process.cwd());
 
@@ -150,6 +151,7 @@ module.exports = function (env, args = {}) {
                             'process.env': {
                                 NODE_ENV: JSON.stringify(mode),
                                 REACT_APP_CHAIN_ENV: JSON.stringify(REACT_APP_CHAIN_ENV),
+                                SERVER_PREFIX: JSON.stringify(SERVER_PREFIX),
                             },
                         }),
                         new webpack.ProvidePlugin({
@@ -201,12 +203,12 @@ module.exports = function (env, args = {}) {
 
                     case 'development':
                         const serverProxy = {
-                            '/api/*': {
-                                // target: `http://localhost:${Number(port) + 1}`,
-                                target: 'https://shorum.herokuapp.com',
-                                secure: false,
-                                changeOrigin: true,
-                            },
+                            // '/api/*': {
+                            //     // target: `http://localhost:${Number(port) + 1}`,
+                            //     target: 'https://shorum.herokuapp.com',
+                            //     secure: false,
+                            //     changeOrigin: true,
+                            // },
                         };
                         const pages = require(path.resolve(ROOT_PATH, 'pages.js'));
                         let targetIP = localIP;

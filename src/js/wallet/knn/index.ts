@@ -4,7 +4,7 @@ import config from '../config';
 
 const knn3ql = config.knn3.openAi;
 
-const getRelatedAddress = async function (address, option = 'RSS3_Follow', algo = 'OVERLAP') {
+const getRelatedAddress = async function (address: string, option = 'RSS3_Follow', algo = 'OVERLAP') {
     const related = gql`query {
         ${algo} (address: "${address}",socialConnect:${option}) 
         {

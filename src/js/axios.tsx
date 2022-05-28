@@ -11,6 +11,8 @@ const Axios = axios.create({
 // 设置post请求头
 Axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
+Axios.defaults.baseURL = process.env.SERVER_PREFIX;
+
 // 当前正在请求的数量
 let requestCount = 0;
 

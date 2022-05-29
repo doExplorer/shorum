@@ -87,8 +87,6 @@ const Room = observer(function () {
             return;
         }
         checkFollow()
-        // todo, to be removed
-        checkClaimable()
     }, [profileData]);
 
     const getProfileData = async () => {

@@ -44,7 +44,7 @@
         display: inline-block;
         width: 157px;
         height: 157px;
-        border: 1px solid @bg-color;
+        border: 1px solid rgba(@bg-color, 0.2);
         border-radius: 10px;
         background-size: cover;
         background-position: center center;
@@ -110,6 +110,11 @@
         .card {
             cursor: pointer;
         }
+    }
+
+    .data-empty {
+        font-size: 50px;
+        color: rgba(@font-color, 0.1)
     }
 }
 

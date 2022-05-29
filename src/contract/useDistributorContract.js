@@ -17,7 +17,7 @@ export default function useDistributorContract(contractAddress) {
         async getClaimable(contractAddress) {
             const contract = new web3.eth.Contract(DistributorAbi, contractAddress);
 
-            const earned = await contract.methods.earned(account, config.tokens.reward.address);
+            const earned = await contract.methods.earned(account, config.tokens.reward.address).call();
 
             return new BN(earned).shiftedBy(-config.tokens.reward.decimals).toFixed(2)
 

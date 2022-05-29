@@ -61,7 +61,7 @@ const Room = observer(function () {
     };
 
     const doClaim = async () => {
-        const result = await distributorContract.claimAllRewards(profileData.distributor);
+        await distributorContract.claimAllRewards(profileData.distributor);
     };
 
     const checkFollow = async () => {

@@ -22,8 +22,6 @@ class CreateStore {
         fee?: number;
     }) => {
         Object.assign(this.roomInfo, info);
-
-        // do web3.js here
     };
 
     @action

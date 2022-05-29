@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Upload, Button } from 'antd';
 import { RcFile } from 'antd/lib/upload';
+import hashHistory from 'hash-history';
+
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
+import useLensHubContract from 'contract/useLensHubContract';
 import ModuleContainer from 'components/ModuleContainer';
 import ipfs from '@/js/ipfs';
 
@@ -13,6 +16,7 @@ import store from './store';
 const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
     const [uploading, setUploading] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(store.roomInfo.avatar);
+    const lensHubContract = useLensHubContract();
 
     const formItemLayout = {
         labelCol: {
@@ -58,16 +62,39 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
         }
     };
 
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
         console.log('Success:', values);
 
         values.avatar = avatarUrl;
         store.saveData(values);
+
+        const result: any = await lensHubContract.createProfile(values);
+        if (result.status) {
+            // console.log('result is', result.events.Transfer.returnValues.tokenId)
+            hashHistory.push(`/invite/${result.events.Transfer.returnValues.tokenId}`);
+        }
+
         // onNext();
     };
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
+    };
+
+    const checkNameValid = async (value: string) => {
+        const result: any = await lensHubContract.getProfileIdByHandle(value);
+        console.log('profile id is', result, typeof result, !result)
+        return result === '0'
+    };
+
+    const profileNameValidator = async (_: any, value: any) => {
+        console.log(_, value);
+        const isValid:boolean = await checkNameValid(value)
+        if (isValid) {
+            return Promise.resolve();
+        } else {
+            return Promise.reject();
+        }
     };
 
     const uploadButton = <div>{uploading ? <LoadingOutlined /> : <PlusOutlined />}</div>;
@@ -89,7 +116,10 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
                     <Form.Item
                         label="Choose a name for your shorum"
                         name="name"
-                        rules={[{ required: true, message: 'Please input your shorum name!' }]}>
+                        rules={[
+                            { required: true, message: 'Please input your shorum name!' },
+                            { message: 'Profile name already taken', validator: profileNameValidator },
+                        ]}>
                         <Input bordered={false} placeholder="Please input your shorum name" />
                     </Form.Item>
 

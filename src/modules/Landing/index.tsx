@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { Button } from 'antd';
-import { useWallet } from 'use-wallet';
+// import { useWallet } from 'use-wallet';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import Card from 'components/Card';
 import hashHistory from 'hash-history';
-import CommonContractApi from 'contract/CommonContractApi';
-import FundingContractApi from 'contract/FundingContractApi';
-// import Web3 from "web3";
 
 import createStore from '../Create/store';
 import store from './store';
@@ -16,11 +13,7 @@ import store from './store';
 import './style.less';
 
 const LandingPage = observer(function () {
-    const wallet = useWallet();
-    const { account } = wallet;
-
-    const fundingContractApi = FundingContractApi(wallet);
-    const commonContractApi = CommonContractApi(wallet);
+    // const wallet = useWallet();
 
     const onCreate = () => {
         createStore.clearData();
@@ -31,7 +24,7 @@ const LandingPage = observer(function () {
         store.loadData();
     }, []);
 
-    const roomData = Array.from(store.roomData);
+    // const roomData = Array.from(store.roomData);
 
     return (
         <ModuleContainer

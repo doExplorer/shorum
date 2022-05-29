@@ -1,15 +1,13 @@
 const contracts = {
-    funding: '0x2Fcd20F97F27c3Ef78AC98189C3C1f22678A955E',
+    lensHub: '0x0f6c67F2b78a231d6920b8825C6bdb1A4B715Df7',
+    follow: '0x38d01a8E1d70404B1d25fd0E5ACbf95C672c0C4A',
 };
 
 const tokens = {
-    mos: {
-        address: '0x6ECD8Db3Afc9DA075BaE38eb706D542409E9981b',
+    usdt: {
+        // this is wMatic, for now
+        address: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
         decimals: 18,
-    },
-    usdc: {
-        address: '0xb7a4F3E9097C08dA09517b5aB877F7a917224ede',
-        decimals: 6,
     },
 };
 

@@ -48,7 +48,7 @@ class Main extends React.Component<RouteComponentProps> {
                                         <RouterSwitch>
                                             <Route component={Landing} path="/landing" />
                                             <Route component={Create} path="/create" />
-                                            <Route component={Invite} path="/invite" />
+                                            <Route component={Invite} path="/invite/:profileId" />
                                             <Route component={Room} path="/room/:id?" />
                                             {/* <Route path="/swap" component={Swap} /> */}
                                             <Redirect to="/landing" />

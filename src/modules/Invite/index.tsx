@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
+import { useParams } from 'react-router-dom';
+import useFollowContract from 'contract/useFollowContract';
 import { Form, Checkbox, Button, Input } from 'antd';
 import ModuleContainer from 'components/ModuleContainer';
 
@@ -9,11 +11,16 @@ import store from './store';
 
 const Invite = observer(function () {
     const { options } = store;
+    const {profileId} = useParams<{profileId?: string}>()
+    const followContract = useFollowContract()
 
-    const onFinish = (values: { inviteValue: string[] }) => {
+    const onFinish = async(values: { inviteValue: string[] }) => {
         console.log('Success:', values);
+        const result:any = await followContract.invite(values.inviteValue, profileId);
+        if(result.status){
+            // store.onInvite(values.inviteValue);
+        }
 
-        store.onInvite(values.inviteValue);
     };
 
     const onFinishFailed = (errorInfo: any) => {

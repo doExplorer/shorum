@@ -1,0 +1,124 @@
+[
+    {
+        "inputs": [
+            { "internalType": "address", "name": "hub", "type": "address" },
+            { "internalType": "address", "name": "moduleGlobals", "type": "address" }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    { "inputs": [], "name": "InitParamsInvalid", "type": "error" },
+    { "inputs": [], "name": "ModuleDataMismatch", "type": "error" },
+    { "inputs": [], "name": "NotHub", "type": "error" },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": false, "internalType": "uint256", "name": "", "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name": "DistributorCreated",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "HUB",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "MODULE_GLOBALS",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "name": "allDistributors",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "profileId", "type": "uint256" }],
+        "name": "createDistributor",
+        "outputs": [{ "internalType": "address", "name": "distributor", "type": "address" }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "profileId", "type": "uint256" },
+            { "internalType": "address", "name": "from", "type": "address" },
+            { "internalType": "address", "name": "to", "type": "address" },
+            { "internalType": "uint256", "name": "followNFTTokenId", "type": "uint256" }
+        ],
+        "name": "followModuleTransferHook",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "profileId", "type": "uint256" }],
+        "name": "getProfileData",
+        "outputs": [
+            {
+                "components": [
+                    { "internalType": "address", "name": "currency", "type": "address" },
+                    { "internalType": "uint256", "name": "amount", "type": "uint256" },
+                    { "internalType": "address", "name": "recipient", "type": "address" },
+                    { "internalType": "address", "name": "distributor", "type": "address" }
+                ],
+                "internalType": "struct ProfileData",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "profileId", "type": "uint256" },
+            { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "initializeFollowModule",
+        "outputs": [{ "internalType": "bytes", "name": "", "type": "bytes" }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "address[]", "name": "_inviteAddresses", "type": "address[]" },
+            { "internalType": "uint256", "name": "profileId", "type": "uint256" }
+        ],
+        "name": "invite",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "profileId", "type": "uint256" },
+            { "internalType": "address", "name": "follower", "type": "address" },
+            { "internalType": "uint256", "name": "followNFTTokenId", "type": "uint256" }
+        ],
+        "name": "isFollowing",
+        "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "address", "name": "follower", "type": "address" },
+            { "internalType": "uint256", "name": "profileId", "type": "uint256" },
+            { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "processFollow",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]

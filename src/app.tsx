@@ -1,8 +1,10 @@
 import 'core-js';
 import 'antd/dist/antd.dark.less';
+import 'react-toastify/dist/ReactToastify.css';
 import './style.less';
 import './app.less';
 import React from 'react';
+import { toast, ToastContainer } from "react-toastify";
 import ReactDOM from 'react-dom';
 import { UseWalletProvider } from 'use-wallet';
 import config from 'config';
@@ -19,6 +21,7 @@ const App = (
             },
         }}>
         <Web3ContextProvider>{router}</Web3ContextProvider>
+        <ToastContainer style={{ zIndex: 99912312312312321399, fontSize: 14 }} />
     </UseWalletProvider>
 );
 ReactDOM.render(App, document.getElementById('app'));

@@ -53,18 +53,7 @@ const Invite = observer(function () {
                     <Form.Item label="Do you want to invite some backers?" name="inviteValue">
                         <Checkbox.Group className="invite-list" options={options} />
                     </Form.Item>
-                    <Form.List
-                        name="addresses"
-                        initialValue={['']}
-                        rules={[
-                            {
-                                validator: async (p: any, addresses: string[]) => {
-                                    if (!addresses || addresses.length < 2) {
-                                        return Promise.reject(new Error('At least 2 passengers'));
-                                    }
-                                },
-                            },
-                        ]}>
+                    <Form.List name="addresses" initialValue={['']}>
                         {(
                             fields: { name: number; key: number }[],
                             {

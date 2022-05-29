@@ -26,13 +26,12 @@ const Invite = observer(function () {
         store.loadData(account);
     }, [account]);
 
-    const onFinish = async (values: { inviteValue: string[] }) => {
+    const onFinish = async (values: { inviteValue: string[]; addresses: string[] }) => {
         console.log('Success:', values);
-        const result: any = await followContract.invite(values.inviteValue, profileId);
-        if (result.status) {
-            // TODO, push to room
-            // store.onInvite(values.inviteValue);
-        }
+        store.onInvite(values, async (inviteList: string[]) => {
+            const result = await followContract.invite(inviteList, profileId);
+            return result;
+        });
     };
 
     const onFinishFailed = (errorInfo: any) => {

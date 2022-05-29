@@ -29,7 +29,10 @@ class InviteStore {
     };
 
     @action
-    onInvite = ({ inviteValue, addresses }: { inviteValue: string[]; addresses: string[] }) => {
+    onInvite = async (
+        { inviteValue, addresses }: { inviteValue: string[]; addresses: string[] },
+        callback: (invites: string[]) => Promise<void>
+    ) => {
         const availableAddress: string[] = [];
         (addresses || []).forEach((address) => {
             const trimValue = _.trim(address);
@@ -43,6 +46,10 @@ class InviteStore {
         }
         inviteList.push(...availableAddress);
         console.log('inviteList', inviteList);
+
+        if (inviteList.length > 0) {
+            await callback(inviteList);
+        }
         hashHistory.push('/room');
     };
 }

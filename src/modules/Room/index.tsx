@@ -53,9 +53,9 @@ const Room = observer(function () {
     };
 
     const checkClaimable = async () => {
-        setClaimable('11 USDC');
         console.log('distributor address: ',profileData.distributor)
         const result = await distributorContract.getClaimable(profileData.distributor);
+        setClaimable(result)
     };
 
     const doClaim = async () => {
@@ -150,7 +150,7 @@ const Room = observer(function () {
                                                         type="primary"
                                                         size="large"
                                                         style={{ marginRight: '8px' }}>
-                                                        Claim {claimable}
+                                                        Claim {claimable} USDT
                                                     </Button>
                                                 )}
                                                 {isFollowing ? (

@@ -16,25 +16,26 @@ export default function useDistributorContract(contractAddress) {
         },
         async getClaimable(contractAddress) {
             const contract = new web3.eth.Contract(DistributorAbi, contractAddress);
-            // todo, why need params
-            console.log('aaa before')
-            const tokens = await contract.rewardTokens().call();
 
-            console.log('tokens', tokens);
-            let earnList = [];
+            const earned = await contract.methods.earned(account, config.tokens.reward.address);
 
-            for (let i = 0; i < earnList; i++) {
-                let address = tokens[i];
+            return new BN(earned).shiftedBy(-config.tokens.reward.decimals).toFixed(2)
 
-                const earned = contract.methods.earned(account, address);
+            // let earnList = [];
 
-                earnList.push({
-                    address,
-                    earned,
-                });
-            }
+            // for (let i = 0; i < earnList; i++) {
+            //     let address = tokens[i];
 
-            return earnList;
+            //     const earned = contract.methods.earned(account, address);
+
+            //     earnList.push({
+            //         address,
+            //         earned,
+            //     });
+            // }
+
+            // return earnList;
+
         },
     };
 }

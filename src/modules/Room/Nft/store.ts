@@ -4,24 +4,29 @@ import utils from 'utils';
 import ipfs from '@/js/ipfs';
 import { INft } from '../interface';
 
+interface IOwner {
+    name: string;
+    avatar: string;
+    description: string;
+    address: string;
+}
+
 class RoomStore {
     @observable data: INft = null;
 
-    @observable onwer = {
-        name: 'Kate520',
-        avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-    };
+    @observable owner: IOwner | null = null;
 
     @computed get avatarUrl() {
-        if (!this.onwer || !this.onwer.avatar) {
+        if (!this.owner || !this.owner.avatar) {
             return '';
         }
-        return ipfs.getUrl(this.onwer.avatar);
+        return ipfs.getUrl(this.owner.avatar);
     }
 
     @action
-    initData = (data: INft) => {
+    initData = (data: INft, owner: IOwner) => {
         this.data = data;
+        this.owner = owner;
     };
 
     @computed get isBuyVisible() {

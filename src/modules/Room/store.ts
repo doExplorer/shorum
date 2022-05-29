@@ -141,7 +141,7 @@ class RoomStore {
 
     @action
     handleNftClick = (item: INft) => {
-        nftStore.initData(item);
+        nftStore.initData(item, { ...this.room, address: this.address });
         this.nftVisible = true;
     };
 

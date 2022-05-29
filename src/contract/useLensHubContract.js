@@ -35,5 +35,20 @@ export default function useLensHubContract() {
         async getProfileIdByHandle(handle) {
             return await contract.methods.getProfileIdByHandle(handle).call();
         },
+        async getFollowNFT(profileId){
+            return await contract.methods.getFollowNFT(profileId).call();
+        },
+        async follow(profileId) {
+            const initData = web3.eth.abi.encodeParameters(
+                ['address', 'uint256'],
+                [
+                    config.tokens.usdt.address,
+                    // TODO, need to get backFee
+                    new BN(1).shiftedBy(config.tokens.usdt.decimals).integerValue(),
+                ]
+            )
+            const func = contract.methods.follow([profileId], [initData]);
+            return await sendTx(func, 'Follow');
+        },
     };
 }

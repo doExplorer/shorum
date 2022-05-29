@@ -11,23 +11,8 @@ export default function useFollowContract() {
 
     return {
         async invite(addresses, profileId) {
-            // const initData = web3.eth.abi.encodeParameters(
-            //     ['uint256', 'address', 'address'],
-            //     [
-            //         new BN(profileInfo.backFee).shiftedBy(config.tokens.usdt.decimals).integerValue(),
-            //         config.tokens.usdt.address,
-            //         account,
-            //     ]
-            // );
-
-            console.log('addresses', addresses, profileId)
             const func = contract.methods.invite(addresses, profileId);
             return await sendTx(func, 'Invite');
-        },
-        async getStartBlock() {
-            const foo = await contract.methods.startBlock().call();
-            console.log('start block', foo);
-            return foo;
         },
     };
 }

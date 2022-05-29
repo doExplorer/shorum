@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { observer } from 'mobx-react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
+import { Web3Context } from '@/context/Web3Context';
 import { Drawer, Button } from 'antd';
-import { useWallet } from 'use-wallet';
+import useFollowContract from 'contract/useFollowContract';
+import useLensHubContract from 'contract/useLensHubContract';
+import useDistributorContract from 'contract/useDistributorContract';
+import useERC721Contract from 'contract/useERC721Contract';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import Card from 'components/Card';
-import Switch from 'components/Switch';
+import ActionButton from 'components/ActionButton';
+// import Switch from 'components/Switch';
 import AvatarList from 'components/AvatarList';
 import FlexibleHeader, { defaultStatus, IStatus } from 'components/FlexibleHeader';
 import List from './List';
@@ -16,12 +21,20 @@ import Nft from './Nft';
 import './style.less';
 
 import store from './store';
+import config from 'config';
 
 const Room = observer(function () {
     const { id } = useParams<{ id?: string }>();
+    const { account } = useContext(Web3Context);
     const [flexibleHeaderStatus, setFlexibleHeaderStatus] = useState(defaultStatus);
-    const wallet = useWallet();
-    const { account } = wallet;
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [claimable, setClaimable] = useState('');
+    const followContract = useFollowContract();
+    const lensHubContract = useLensHubContract();
+    const distributorContract = useDistributorContract();
+    const erc721Contract = useERC721Contract();
+
+    const profileId = 5;
 
     useEffect(() => {
         store.loadData({ id, account });
@@ -38,6 +51,44 @@ const Room = observer(function () {
             setFlexibleHeaderStatus(status);
         }
     };
+
+    const checkClaimable = async () => {
+        setClaimable('11 USDC');
+        const result = await distributorContract.getClaimable();
+    };
+
+    const doClaim = async () => {
+        const result = await distributorContract.claimAllRewards();
+    };
+
+    const checkFollow = async () => {
+        const nftAddress = await lensHubContract.getFollowNFT(profileId);
+        if (nftAddress === config.contracts.empty) {
+            setIsFollowing(false);
+        } else {
+            const balance = await erc721Contract.balanceOf(nftAddress);
+            if (balance > 0) {
+                checkClaimable();
+                setIsFollowing(true);
+            } else {
+                setIsFollowing(false);
+            }
+        }
+    };
+
+    const doFollow = async () => {
+        // TODO, follow failed
+        // TDOO, need profile id, currentcy addr, amount
+        const result = await lensHubContract.follow(profileId);
+    };
+
+    useEffect(() => {
+        if (!account) {
+            return;
+        }
+        checkFollow();
+        checkClaimable();
+    }, [account]);
 
     const { avatarUrl, room, address } = store;
 
@@ -76,21 +127,23 @@ const Room = observer(function () {
                                                 </Button>
                                             </When>
                                             <Otherwise>
-                                                <Choose>
-                                                    <When condition={store.isBacked}>
-                                                        <Button
-                                                            onClick={store.onClaimClick}
-                                                            type="primary"
-                                                            size="large">
-                                                            Claim 20 USDC
-                                                        </Button>
-                                                    </When>
-                                                    <Otherwise>
-                                                        <Button onClick={store.onBackClick} type="primary" size="large">
+                                                
+                                                {claimable && (
+                                                    <Button onClick={doClaim} type="primary" size="large" style={{marginRight: '8px'}}>
+                                                        Claim {claimable}
+                                                    </Button>
+                                                )}
+                                                {isFollowing ? (
+                                                    <Button type="primary" size="large">
+                                                        Backed
+                                                    </Button>
+                                                ) : (
+                                                    <ActionButton tokenAddress={config.tokens.usdt.address} contractAddress={config.contracts.lensHub} onApproved={doFollow} >
+                                                        <Button onClick={doFollow} type="primary" size="large">
                                                             Back
                                                         </Button>
-                                                    </Otherwise>
-                                                </Choose>
+                                                    </ActionButton>
+                                                )}
                                             </Otherwise>
                                         </Choose>
                                     </div>

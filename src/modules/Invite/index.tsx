@@ -18,6 +18,7 @@ const Invite = observer(function () {
         console.log('Success:', values);
         const result:any = await followContract.invite(values.inviteValue, profileId);
         if(result.status){
+            // TODO, push to room
             // store.onInvite(values.inviteValue);
         }
 

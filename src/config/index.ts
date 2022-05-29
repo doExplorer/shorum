@@ -7,14 +7,12 @@ const envConf = require(`./${REACT_APP_CHAIN_ENV}`).default as {
     provider: string;
     chainId: number;
     contracts: {
-        funding: string;
+        lensHub: string;
+        follow: string;
+        empty: string;
     };
     tokens: {
-        mos: {
-            address: string;
-            decimals: number;
-        };
-        usdc: {
+        usdt: {
             address: string;
             decimals: number;
         };

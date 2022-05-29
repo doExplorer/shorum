@@ -47,14 +47,10 @@ export const Web3ContextProvider = ({ children }) => {
             const web3Raw = new Web3(window.ethereum);
             setWeb3(web3Raw);
 
-            console.log('web3', web3Raw);
-
             // get account, use this variable to detech if user is connected
             const accounts = await web3Raw.eth.getAccounts();
 
             setAccount(accounts[0]);
-
-            console.log('acc', accounts);
 
             // get network id
             setnetworkId(await web3Raw.eth.net.getId());

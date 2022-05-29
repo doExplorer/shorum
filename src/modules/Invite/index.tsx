@@ -40,6 +40,11 @@ const Invite = observer(function () {
         console.log('Failed:', errorInfo);
     };
 
+    const handleChange = (e: React.ChangeEvent) => {
+        const { value } = e.target as HTMLInputElement;
+        store.onInputChange(value);
+    };
+
     return (
         <ModuleContainer className="invite-page common-container">
             <Form
@@ -102,6 +107,7 @@ const Invite = observer(function () {
                                                     }
                                                     add('', index + 1);
                                                 }}
+                                                onChange={handleChange}
                                             />
                                         </Form.Item>
                                         {fields.length > 1 ? (

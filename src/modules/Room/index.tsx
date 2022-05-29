@@ -203,6 +203,9 @@ const Room = observer(function () {
                             <When condition={flexibleHeaderStatus === 'short'}>
                                 <List />
                             </When>
+                            <When condition={!store.nfts.length}>
+                                <div className="data-empty">{`There's no NFTs to show`}</div>
+                            </When>
                             <Otherwise>
                                 <AppCarousel slidesToShow={5}>
                                     {Array.from(store.nfts, (item, index) => {

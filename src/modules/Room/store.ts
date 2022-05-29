@@ -65,6 +65,15 @@ class RoomStore {
         this.nftVisible = false;
         this.roomType = 'owner';
         this.isBacked = false;
+        const defaultName = `${fetchAccount.slice(0, 6)}...${fetchAccount.slice(-6)}`;
+        if (this.address !== fetchAccount) {
+            this.room = {
+                name: defaultName,
+                avatar: defaultAvatar,
+                description: '',
+            };
+            this.nfts = [];
+        }
         this.address = fetchAccount;
 
         const chain = utils.getChainKey();

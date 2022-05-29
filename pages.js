@@ -2,7 +2,7 @@ module.exports = [
     {
         url: '/app',
         name: 'app',
-        title: 'APP',
+        title: 'Shorum',
         path: 'src/app.tsx',
     },
 ];

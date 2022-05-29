@@ -47,7 +47,7 @@ const Invite = observer(function () {
     };
 
     return (
-        <ModuleContainer className="invite-page common-container">
+        <ModuleContainer className="invite-page common-container" title="Step3">
             <Form
                 className="invite-form"
                 name="invite"
@@ -96,7 +96,7 @@ const Invite = observer(function () {
                                             noStyle>
                                             <Input
                                                 placeholder="invite address"
-                                                style={{ width: '60%' }}
+                                                style={{ width: '70%' }}
                                                 onPressEnter={(e: React.KeyboardEvent) => {
                                                     e.preventDefault();
 

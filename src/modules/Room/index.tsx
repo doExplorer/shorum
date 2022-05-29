@@ -15,8 +15,8 @@ import ActionButton from 'components/ActionButton';
 // import Switch from 'components/Switch';
 import AvatarList from 'components/AvatarList';
 import FlexibleHeader, { defaultStatus, IStatus } from 'components/FlexibleHeader';
+import BN from 'bignumber.js';
 import { Web3Context } from '@/context/Web3Context';
-import BN from 'bignumber.js'
 import { IProfileData } from './interface';
 import List from './List';
 import Nft from './Nft';
@@ -31,7 +31,7 @@ const Room = observer(function () {
     const [flexibleHeaderStatus, setFlexibleHeaderStatus] = useState(defaultStatus);
     const [isFollowing, setIsFollowing] = useState(false);
     const [profileData, setProfileData] = useState<IProfileData>();
-    const [payAmount, setPayAmount] = useState('')
+    const [payAmount, setPayAmount] = useState('');
     const [claimable, setClaimable] = useState('');
     const followContract = useFollowContract();
     const lensHubContract = useLensHubContract();
@@ -70,7 +70,7 @@ const Room = observer(function () {
             setIsFollowing(false);
         } else {
             const balance = await erc721Contract.balanceOf(nftAddress);
-            console.log('balance', balance)
+            console.log('balance', balance);
             if (balance > 0) {
                 checkClaimable();
                 setIsFollowing(true);
@@ -96,7 +96,7 @@ const Room = observer(function () {
     const getProfileData = async () => {
         const result = await followContract.getProfileData(id);
         setProfileData(result);
-        setPayAmount(new BN(result.amount).shiftedBy(-18).toString())
+        setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
     };
 
     useEffect(() => {

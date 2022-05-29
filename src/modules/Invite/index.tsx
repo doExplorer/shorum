@@ -31,7 +31,8 @@ const Invite = observer(function () {
         console.log('Success:', values);
         store.onInvite(values, async (inviteList: string[]) => {
             await followContract.invite(inviteList, profileId);
-            hashHistory.push(`/room/${profileId}`);
+            console.log('ready to jump')
+            hashHistory.push(`/room/${account}`);
             // return result;
         });
     };

@@ -116,7 +116,6 @@ export const Web3ContextProvider = ({ children }) => {
                         toastId: txnHash,
                         icon: <LoadingOutlined />,
                         autoClose: false,
-                        onClick: () => goScan(txnHash),
                     });
                 })
                 .on('receipt', async (receipt) => {
@@ -126,7 +125,6 @@ export const Web3ContextProvider = ({ children }) => {
                     await toast.dismiss(txnHash);
                     toast.success(title, {
                         toastId: txnHash,
-                        onClick: () => goScan(txnHash),
                     });
                 })
                 .on('error', async (err, txn) => {
@@ -136,9 +134,7 @@ export const Web3ContextProvider = ({ children }) => {
                     if (err.code === 4001) {
                         toast.error('User canceled action');
                     } else {
-                        toast.error(title, {
-                            onClick: () => goScan(txnHash),
-                        });
+                        toast.error(title, {});
                     }
                 });
         }

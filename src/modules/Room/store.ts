@@ -84,6 +84,8 @@ class RoomStore {
                                 name: currentMetaData.name,
                                 description: currentMetaData.description,
                                 imageUrl,
+                                tokenAddress: item.token_address,
+                                tokenId: item.token_id,
                             });
                         }
                     }

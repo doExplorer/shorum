@@ -12,11 +12,11 @@ import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import Card from 'components/Card';
 import ActionButton from 'components/ActionButton';
-import { IProfileData } from './interface';
 // import Switch from 'components/Switch';
 import AvatarList from 'components/AvatarList';
 import FlexibleHeader, { defaultStatus, IStatus } from 'components/FlexibleHeader';
 import { Web3Context } from '@/context/Web3Context';
+import { IProfileData } from './interface';
 import List from './List';
 import Nft from './Nft';
 
@@ -53,9 +53,9 @@ const Room = observer(function () {
     };
 
     const checkClaimable = async () => {
-        console.log('distributor address: ',profileData.distributor)
+        console.log('distributor address: ', profileData.distributor);
         const result = await distributorContract.getClaimable(profileData.distributor);
-        setClaimable(result)
+        setClaimable(result);
     };
 
     const doClaim = async () => {
@@ -86,7 +86,8 @@ const Room = observer(function () {
         if (!profileData) {
             return;
         }
-        checkFollow()
+        checkFollow();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profileData]);
 
     const getProfileData = async () => {
@@ -99,6 +100,7 @@ const Room = observer(function () {
             return;
         }
         getProfileData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [account]);
 
     const { avatarUrl, room, address } = store;

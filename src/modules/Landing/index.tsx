@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
+import classNames from 'classnames';
 import { Button } from 'antd';
 // import { useWallet } from 'use-wallet';
+import hashHistory from 'hash-history';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
-import Card from 'components/Card';
-import hashHistory from 'hash-history';
+import PersonCard from '@/modules/Landing/PersonCard';
 
 import createStore from '../Create/store';
 import store from './store';
@@ -39,8 +40,16 @@ const LandingPage = observer(function () {
             <div className="show-card-box">
                 <div className="show-card-box-list">
                     <AppCarousel slidesToShow={4}>
-                        {Array.from(store.roomData, (item, index) => {
-                            return <Card key={index} imageUrl={item.imageUrl} />;
+                        {Array.from(store.personList, (item, index) => {
+                            return (
+                                <PersonCard
+                                    key={index}
+                                    className={classNames({
+                                        even: index % 2,
+                                    })}
+                                    person={item}
+                                />
+                            );
                         })}
                     </AppCarousel>
                 </div>

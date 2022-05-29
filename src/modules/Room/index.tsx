@@ -60,7 +60,11 @@ const Room = observer(function () {
                                     </div>
                                     <div className="room-footer">
                                         <div className="room-avatar-list">
-                                            <AvatarList options={store.avatarList} avatarField="avatar" maxCount={5} />
+                                            <AvatarList
+                                                options={store.followingAvatarList}
+                                                avatarField="avatar"
+                                                maxCount={5}
+                                            />
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>

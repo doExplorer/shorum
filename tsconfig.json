@@ -4,7 +4,7 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "strictNullChecks": false,
-        "module": "commonjs",
+        "module": "ESNext",
         "target": "ESNext",
         "jsx": "react",
         "experimentalDecorators": true,
@@ -44,7 +44,8 @@
     },
     "files": [
         "./src/typings/index.d.ts",
-        "./node_modules/tsx-control-statements/index.d.tsx"
+        "./node_modules/tsx-control-statements/index.d.tsx",
+        "./node_modules/rss3/types/rss3.d.ts"
     ],
     "include": [
         "./src/**/*"

@@ -3,6 +3,7 @@ import { message } from 'antd';
 import utils from 'utils';
 import $axios from '$axios';
 import ipfs from '@/js/ipfs';
+import rss3 from '@/js/rss3';
 import walleApi from '@/js/wallet';
 import { IRoom } from '../Create/interface';
 import { INft } from './interface';
@@ -24,7 +25,16 @@ class RoomStore {
 
     @observable balance = 0.3068438025035108;
 
-    @observable avatarList: { avatar: string }[] = [];
+    @observable avatarList: {
+        name?: string;
+        avatar?: string[];
+        bio?: string;
+        accounts?: {
+            tags?: string[];
+            id: string;
+            signature?: string;
+        }[];
+    }[] = [];
 
     /** display NFT */
     @observable nftVisible = false;
@@ -78,34 +88,19 @@ class RoomStore {
             this.nfts = data;
         });
 
-        walleApi.getRelatedAddress(fetchAccount).then(({ data }) => {
-            console.log('relatedAddress', data);
-        });
-
-        this.avatarList = [
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-        ];
+        this.avatarList = [];
+        rss3.getFollowerList(fetchAccount).then(
+            action((profileList) => {
+                this.avatarList = profileList || [];
+            })
+        );
     };
+
+    @computed get followingAvatarList() {
+        return this.avatarList.map((person) => {
+            return { avatar: person.avatar[0] };
+        });
+    }
 
     @action
     clearData = () => {

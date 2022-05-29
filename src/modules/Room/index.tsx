@@ -120,7 +120,7 @@ const Room = observer(function () {
                         <div className={classNames('room-title', { 'is-mine': isMine })}>
                             <div className="room-tilte-container">
                                 <div
-                                    className="room-avatar"
+                                    className="room-avatar avatar-default"
                                     style={avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : undefined}
                                 />
                                 <div className="room-info">

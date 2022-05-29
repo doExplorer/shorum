@@ -20,7 +20,10 @@ const PersonCard = observer(function ({
             <div className="card-box">
                 <div className="card" onClick={onClick}>
                     <div className="card-avatar">
-                        <div style={person.avatar ? { backgroundImage: `url(${person.avatar})` } : undefined} />
+                        <div
+                            className="avatar avatar-default"
+                            style={person.avatar ? { backgroundImage: `url(${person.avatar})` } : undefined}
+                        />
                     </div>
                     <div className="card-info">
                         <div className="person-info">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { Form, Checkbox, Button, Input } from 'antd';
+import { useWallet } from 'use-wallet';
 import ModuleContainer from 'components/ModuleContainer';
 
 import './style.less';
@@ -9,6 +10,12 @@ import store from './store';
 
 const Invite = observer(function () {
     const { options } = store;
+    const wallet = useWallet();
+    const { account } = wallet;
+
+    useEffect(() => {
+        store.loadData(account);
+    }, [account]);
 
     const onFinish = (values: { inviteValue: string[] }) => {
         console.log('Success:', values);

@@ -126,6 +126,11 @@ const Room = observer(function () {
                                     <div className="room-address">
                                         {address.slice(0, 6)}...{address.slice(-6)}
                                     </div>
+                                    <br/>
+                                    {profileData?.distributor && <div className="room-address">
+                                        Distributor address: {profileData.distributor}
+                                    </div>}
+                                    
                                     <div className="room-footer">
                                         <div className="room-avatar-list">
                                             <AvatarList

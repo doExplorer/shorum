@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Upload, Button } from 'antd';
 import { RcFile } from 'antd/lib/upload';
-import hashHistory from 'hash-history';
 
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
@@ -68,13 +67,7 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
         values.avatar = avatarUrl;
         store.saveData(values);
 
-        const result: any = await lensHubContract.createProfile(values);
-        if (result.status) {
-            // console.log('result is', result.events.Transfer.returnValues.tokenId)
-            hashHistory.push(`/invite/${result.events.Transfer.returnValues.tokenId}`);
-        }
-
-        // onNext();
+        onNext();
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -153,12 +146,12 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
                     </Form.Item>
                 </div>
                 <div className="page-form-footer">
-                    {/* <Button type="primary" htmlType="submit" size="large">
-                        Next
-                    </Button> */}
                     <Button type="primary" htmlType="submit" size="large">
-                        Submit
+                        Next
                     </Button>
+                    {/* <Button type="primary" htmlType="submit" size="large">
+                        Submit
+                    </Button> */}
                 </div>
             </Form>
         </ModuleContainer>

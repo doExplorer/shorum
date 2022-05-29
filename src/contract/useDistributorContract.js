@@ -19,7 +19,12 @@ export default function useDistributorContract(contractAddress) {
 
             const earned = await contract.methods.earned(account, config.tokens.reward.address).call();
 
-            return new BN(earned).shiftedBy(-config.tokens.reward.decimals).toFixed(2)
+            console.log(earned, 'EARNED', typeof earned)
+            if(earned === '0'){
+                return '0'
+            }else{
+                return new BN(earned).shiftedBy(-config.tokens.reward.decimals).toFixed(2)
+            }
 
             // let earnList = [];
 

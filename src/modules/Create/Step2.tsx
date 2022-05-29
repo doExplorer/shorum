@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import { observer } from 'mobx-react';
 import ModuleContainer from 'components/ModuleContainer';
+import useLensHubContract from 'contract/useLensHubContract';
+import hashHistory from 'hash-history';
 
 import './style.less';
 
 import store from './store';
 
 const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
+    const lensHubContract = useLensHubContract();
     const formItemLayout = {
         labelCol: {
             xs: { span: 12 },
@@ -17,12 +20,17 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
         },
     };
 
-    const onFinish = (values: any) => {
+    const onFinish = async(values: any) => {
         console.log('Success:', values);
 
         store.saveData(values);
 
-        store.onSubmit();
+        console.log(store.roomInfo)
+
+        const result: any = await lensHubContract.createProfile(store.roomInfo);
+        if (result.status) {
+            hashHistory.push(`/invite/${result.events.Transfer.returnValues.tokenId}`);
+        }
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -46,21 +54,21 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
                     <Form.Item
                         label="Choose a max backer you allow"
                         name="backer"
-                        rules={[{ required: true, message: 'Please input a max backer you allow!' }]}>
+                        rules={[{ required: false, message: 'Please input a max backer you allow!' }]}>
                         <InputNumber min={0} bordered={false} placeholder="Please input a max backer you allow" />
                     </Form.Item>
 
                     <Form.Item
                         name="rate"
                         label="Choose a rate you want to share with your backer (%)"
-                        rules={[{ required: true, message: 'Please input a max backer you allow!' }]}>
+                        rules={[{ required: false, message: 'Please input a max backer you allow!' }]}>
                         <InputNumber min={0} bordered={false} placeholder="Please input a max backer you allow" />
                     </Form.Item>
 
                     <Form.Item
                         name="fee"
                         label="Choose a min-back fee (in ETH)"
-                        rules={[{ required: true, message: 'Please choose a min-back fee (in ETH)!' }]}>
+                        rules={[{ required: false, message: 'Please choose a min-back fee (in ETH)!' }]}>
                         <InputNumber
                             min={0}
                             bordered={false}

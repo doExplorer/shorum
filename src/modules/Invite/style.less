@@ -11,6 +11,10 @@
     flex-direction: column;
     height: 100%;
 
+    .ant-row {
+        margin-bottom: 12px;
+    }
+
     &-body {
         flex: 1;
         padding: 30px 64px 0;
@@ -45,6 +49,35 @@
         padding: 30px 26px 50px;
     }
 
+    .title {
+        font-size: 23px;
+        color: @font-color;
+        margin-bottom: 15px;
+    }
+
+    .select-box {
+        color: @font-color;
+        margin-bottom: 20px;
+        align-items: center;
+
+        label {
+            margin-right: 10px;
+        }
+
+        .ant-select {
+            color: @font-color;
+            margin-right: 20px;
+        }
+
+        .ant-select-single {
+            &.ant-select-open {
+                .ant-select-selection-item {
+                    color: @font-color;
+                }
+            }
+        }
+    }
+
     .ant-checkbox-wrapper {
         color: @bg-color;
     }
@@ -66,14 +99,24 @@
             opacity: 0.8;
         }
     }
-
-    .ant-row {
-        margin-bottom: 12px;
-    }
 }
 
 .invite-list {
     display: flex;
     flex-direction: column;
-    line-height: 30px;
+
+    .ant-checkbox-group-item {
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+
+        .ant-checkbox {
+            top: 0;
+        }
+
+        & > * {
+            display: inline-flex;
+            align-items: center;
+        }
+    }
 }

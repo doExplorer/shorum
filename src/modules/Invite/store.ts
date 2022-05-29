@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx';
 import _ from 'lodash';
-import hashHistory from 'hash-history';
 import Web3Utils from 'web3-utils';
 import utils from 'utils';
 import walleApi from '@/js/wallet';
@@ -50,7 +49,6 @@ class InviteStore {
         if (inviteList.length > 0) {
             await callback(inviteList);
         }
-        hashHistory.push('/room');
     };
 }
 

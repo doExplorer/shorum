@@ -1,4 +1,6 @@
 import { observable, action, computed } from 'mobx';
+import { tradeChainMapping } from 'config';
+import utils from 'utils';
 import ipfs from '@/js/ipfs';
 import { INft } from '../interface';
 
@@ -20,6 +22,17 @@ class RoomStore {
     @action
     initData = (data: INft) => {
         this.data = data;
+    };
+
+    @computed get isBuyVisible() {
+        return !!(tradeChainMapping as { [key: number]: string })[utils.getChain()];
+    }
+
+    @action
+    onBuy = () => {
+        const chainKey = (tradeChainMapping as { [key: number]: string })[utils.getChain()];
+        const { tokenAddress, tokenId } = this.data;
+        window.open(`https://opensea.io/assets/${chainKey}/${tokenAddress}/${tokenId}`);
     };
 }
 

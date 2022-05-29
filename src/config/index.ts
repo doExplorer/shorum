@@ -45,6 +45,11 @@ export const chainThemeMapping = {
     80001: '#FF7F33',
 };
 
+export const tradeChainMapping = {
+    1: 'ethereum',
+    137: 'matic',
+};
+
 // if (CHAIN_ENV === "kovan") {
 //   envConf = require("./kovan").default;
 // } else if (CHAIN_ENV === "mainnet") {

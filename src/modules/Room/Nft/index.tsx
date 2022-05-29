@@ -9,7 +9,7 @@ import './style.less';
 import store from './store';
 
 const Nft = observer(function ({ onClose }: { onClose: () => void }) {
-    const { data, onwer, avatarUrl } = store;
+    const { data, onwer, avatarUrl, isBuyVisible } = store;
 
     return (
         <ModuleContainer className="nft-page common-container">
@@ -17,6 +17,11 @@ const Nft = observer(function ({ onClose }: { onClose: () => void }) {
                 <Button type="link" className="btn-back" icon={<CaretLeftOutlined />} onClick={onClose}>
                     Back
                 </Button>
+                <If condition={isBuyVisible}>
+                    <Button className="btn-buy" size="large" type="primary" onClick={store.onBuy}>
+                        Buy
+                    </Button>
+                </If>
                 <div className="nft-container-box">
                     <div className="nft-image">
                         <div className="nft-image-container">

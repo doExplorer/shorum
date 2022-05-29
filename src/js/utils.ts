@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import 'element-closest-polyfill';
 
 import mainStore from './main.tore';
@@ -60,6 +61,18 @@ class Utils {
             value = Promise.resolve(value);
         }
         return value;
+    }
+
+    public setCrossDomainStorage(key: string, value: string) {
+        if (value) {
+            Cookies.set(key, value);
+        } else {
+            Cookies.remove(key);
+        }
+    }
+
+    public getCrossDomainStorage(key: string): string {
+        return Cookies.get(key) || '';
     }
 }
 

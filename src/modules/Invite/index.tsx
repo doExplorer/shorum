@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { useParams } from 'react-router-dom';
 import useFollowContract from 'contract/useFollowContract';
 import { Form, Checkbox, Button, Input } from 'antd';
+import { useWallet } from 'use-wallet';
 import ModuleContainer from 'components/ModuleContainer';
 
 import './style.less';
@@ -11,17 +12,22 @@ import store from './store';
 
 const Invite = observer(function () {
     const { options } = store;
-    const {profileId} = useParams<{profileId?: string}>()
-    const followContract = useFollowContract()
+    const { profileId } = useParams<{ profileId?: string }>();
+    const followContract = useFollowContract();
+    const wallet = useWallet();
+    const { account } = wallet;
 
-    const onFinish = async(values: { inviteValue: string[] }) => {
+    useEffect(() => {
+        store.loadData(account);
+    }, [account]);
+
+    const onFinish = async (values: { inviteValue: string[] }) => {
         console.log('Success:', values);
-        const result:any = await followContract.invite(values.inviteValue, profileId);
-        if(result.status){
+        const result: any = await followContract.invite(values.inviteValue, profileId);
+        if (result.status) {
             // TODO, push to room
             // store.onInvite(values.inviteValue);
         }
-
     };
 
     const onFinishFailed = (errorInfo: any) => {

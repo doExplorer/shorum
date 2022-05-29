@@ -254,6 +254,7 @@ module.exports = function (env, args = {}) {
                                     'X-Frame-Options': 'SAMEORIGIN',
                                     'X-XSS-Protection': '1; mode=block',
                                 },
+                                allowedHosts: 'all',
                             },
                         });
                         break;

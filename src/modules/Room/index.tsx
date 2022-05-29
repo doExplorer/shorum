@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { observer } from 'mobx-react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import { Web3Context } from '@/context/Web3Context';
+import config from 'config';
 import { Drawer, Button } from 'antd';
 import useFollowContract from 'contract/useFollowContract';
 import useLensHubContract from 'contract/useLensHubContract';
@@ -15,13 +15,13 @@ import ActionButton from 'components/ActionButton';
 // import Switch from 'components/Switch';
 import AvatarList from 'components/AvatarList';
 import FlexibleHeader, { defaultStatus, IStatus } from 'components/FlexibleHeader';
+import { Web3Context } from '@/context/Web3Context';
 import List from './List';
 import Nft from './Nft';
 
 import './style.less';
 
 import store from './store';
-import config from 'config';
 
 const Room = observer(function () {
     const { id } = useParams<{ id?: string }>();
@@ -82,13 +82,13 @@ const Room = observer(function () {
         const result = await lensHubContract.follow(profileId);
     };
 
-    useEffect(() => {
-        if (!account) {
-            return;
-        }
-        checkFollow();
-        checkClaimable();
-    }, [account]);
+    // useEffect(() => {
+    //     if (!account) {
+    //         return;
+    //     }
+    //     // checkFollow();
+    //     // checkClaimable();
+    // }, [account]);
 
     const { avatarUrl, room, address } = store;
 
@@ -111,7 +111,11 @@ const Room = observer(function () {
                                     </div>
                                     <div className="room-footer">
                                         <div className="room-avatar-list">
-                                            <AvatarList options={store.avatarList} avatarField="avatar" maxCount={5} />
+                                            <AvatarList
+                                                options={store.followingAvatarList}
+                                                avatarField="avatar"
+                                                maxCount={5}
+                                            />
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
@@ -127,9 +131,12 @@ const Room = observer(function () {
                                                 </Button>
                                             </When>
                                             <Otherwise>
-                                                
                                                 {claimable && (
-                                                    <Button onClick={doClaim} type="primary" size="large" style={{marginRight: '8px'}}>
+                                                    <Button
+                                                        onClick={doClaim}
+                                                        type="primary"
+                                                        size="large"
+                                                        style={{ marginRight: '8px' }}>
                                                         Claim {claimable}
                                                     </Button>
                                                 )}
@@ -138,7 +145,10 @@ const Room = observer(function () {
                                                         Backed
                                                     </Button>
                                                 ) : (
-                                                    <ActionButton tokenAddress={config.tokens.usdt.address} contractAddress={config.contracts.lensHub} onApproved={doFollow} >
+                                                    <ActionButton
+                                                        tokenAddress={config.tokens.usdt.address}
+                                                        contractAddress={config.contracts.lensHub}
+                                                        onApproved={doFollow}>
                                                         <Button onClick={doFollow} type="primary" size="large">
                                                             Back
                                                         </Button>

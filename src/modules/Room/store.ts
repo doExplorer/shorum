@@ -3,28 +3,42 @@ import { message } from 'antd';
 import utils from 'utils';
 import $axios from '$axios';
 import ipfs from '@/js/ipfs';
+import rss3 from '@/js/rss3';
 import walleApi from '@/js/wallet';
-import { IRoom } from '../Create/interface';
 import { INft } from './interface';
 import nftStore from './Nft/store';
+
+interface IProfile {
+    name?: string;
+    avatar?: string[];
+    bio?: string;
+    accounts?: {
+        tags?: string[];
+        id: string;
+        signature?: string;
+    }[];
+}
+
+const defaultAvatar = 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS';
 
 class RoomStore {
     @observable address = '0x4700F51B1FEfF74Df41BED9C31D0b2e5662d35b8';
 
-    @observable room: IRoom = {
-        name: 'Kate520’s Shorum',
-        avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-        description: 'That’s my description right here',
-        backer: 2,
-        rate: 20,
-        fee: 0.1,
+    @observable room: {
+        name: string;
+        avatar: string;
+        description: string;
+    } = {
+        name: '',
+        avatar: defaultAvatar,
+        description: '',
     };
 
     @observable nfts: INft[] = [];
 
     @observable balance = 0.3068438025035108;
 
-    @observable avatarList: { avatar: string }[] = [];
+    @observable avatarList: IProfile[] = [];
 
     /** display NFT */
     @observable nftVisible = false;
@@ -70,6 +84,8 @@ class RoomStore {
                                 name: currentMetaData.name,
                                 description: currentMetaData.description,
                                 imageUrl,
+                                tokenAddress: item.token_address,
+                                tokenId: item.token_id,
                             });
                         }
                     }
@@ -78,34 +94,33 @@ class RoomStore {
             this.nfts = data;
         });
 
-        walleApi.getRelatedAddress(fetchAccount).then(({ data }) => {
-            console.log('relatedAddress', data);
-        });
+        rss3.getProfile(fetchAccount).then(
+            action((accountInfo) => {
+                this.room = {
+                    name: accountInfo.name || `${this.address.slice(0, 6)}...${this.address.slice(-6)}`,
+                    description: accountInfo.bio,
+                    avatar: accountInfo.avatar?.length > 0 ? accountInfo.avatar[0] : defaultAvatar,
+                };
+            })
+        );
 
-        this.avatarList = [
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-            {
-                avatar: 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS',
-            },
-        ];
+        this.avatarList = [];
+        rss3.getFollowerList(fetchAccount).then(
+            action((profileList) => {
+                this.avatarList = profileList || [];
+            })
+        );
     };
+
+    @computed get followingAvatarList() {
+        const avatarUrls: { avatar: string }[] = [];
+        this.avatarList.forEach((person) => {
+            if (person?.avatar?.length > 0) {
+                avatarUrls.push({ avatar: person.avatar[0] });
+            }
+        });
+        return avatarUrls;
+    }
 
     @action
     clearData = () => {

@@ -50,6 +50,17 @@ class InviteStore {
             await callback(inviteList);
         }
     };
+
+    @action
+    onInputChange = (value: string) => {
+        const trimValue = _.trim(value);
+        if (!trimValue) {
+            return;
+        }
+        if (Web3Utils.isAddress(trimValue)) {
+            // to get avatar
+        }
+    };
 }
 
 export default new InviteStore();

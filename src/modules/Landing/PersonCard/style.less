@@ -25,6 +25,7 @@
         background-position: center center;
         background-repeat: no-repeat;
         overflow: hidden;
+        cursor: pointer;
     }
 
     .card-avatar {
@@ -47,6 +48,7 @@
             border: 1px solid @bg-color;
             border-radius: @person-card-radius;
             background-color: @theme-color;
+            background-image: url('../../../assets/avatar-default.png');
         }
     }
 
@@ -58,7 +60,7 @@
         border-bottom-left-radius: @person-card-radius;
         border-bottom-right-radius: @person-card-radius;
         color: @bg-color;
-        background-color: #31D7FF;
+        background-color: #31d7ff;
         padding: 12px;
 
         .person-info {
@@ -98,7 +100,6 @@
             line-height: 14px;
         }
 
-
         .person-follow {
             width: 40%;
             height: 100%;
@@ -117,7 +118,7 @@
 
     &.even {
         .card-info {
-            background-color: #31FFAB;
+            background-color: #31ffab;
         }
     }
 }

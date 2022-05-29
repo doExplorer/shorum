@@ -5,8 +5,6 @@ import ipfs from '@/js/ipfs';
 import rss3 from '@/js/rss3';
 import { IPerson } from './interface';
 
-const defaultAvatar = 'ipfs://QmXc8VNf9njXtHGpG4Bdc5U4eB8g91rkzLHjiZACPQsxEm';
-
 class LandingStore {
     @observable personList: IPerson[] = [];
 
@@ -44,7 +42,7 @@ class LandingStore {
                             description: profile.bio,
                         });
                     }
-                    person.avatar = ipfs.getUrl(person.avatar || defaultAvatar);
+                    person.avatar = person.avatar ? ipfs.getUrl(person.avatar) : '';
                     return person;
                 });
                 this.personList = profileList;

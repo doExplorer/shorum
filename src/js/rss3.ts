@@ -389,13 +389,20 @@ const RSS3Instance = {
             };
         }
     },
+    getProfile: async (address: string) => {
+        const RSS3APIPersona = RSS3Instance.getAPIUser();
+        if (!address) {
+            return null;
+        }
+        const profile = await RSS3APIPersona.persona.profile.get(address);
+        return profile;
+    },
     getProfileList: async (addresses: string[]) => {
         const RSS3APIPersona = RSS3Instance.getAPIUser();
         if (!addresses || !addresses.length) {
             return [];
         }
         const profileList = await RSS3APIPersona.persona.profile.getList(addresses);
-        // const profileList = [await RSS3APIPersona.persona.profile.get('0xC8b960D09C0078c18Dcbe7eB9AB9d816BcCa8944')];
         return profileList;
     },
     getFollowingList: async (addresses: string) => {

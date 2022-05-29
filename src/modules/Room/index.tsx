@@ -12,6 +12,7 @@ import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import Card from 'components/Card';
 import ActionButton from 'components/ActionButton';
+import { IProfileData } from './interface';
 // import Switch from 'components/Switch';
 import AvatarList from 'components/AvatarList';
 import FlexibleHeader, { defaultStatus, IStatus } from 'components/FlexibleHeader';
@@ -28,13 +29,12 @@ const Room = observer(function () {
     const { account } = useContext(Web3Context);
     const [flexibleHeaderStatus, setFlexibleHeaderStatus] = useState(defaultStatus);
     const [isFollowing, setIsFollowing] = useState(false);
+    const [profileData, setProfileData] = useState<IProfileData>();
     const [claimable, setClaimable] = useState('');
     const followContract = useFollowContract();
     const lensHubContract = useLensHubContract();
     const distributorContract = useDistributorContract();
     const erc721Contract = useERC721Contract();
-
-    const profileId = 5;
 
     useEffect(() => {
         store.loadData({ id, account });
@@ -54,19 +54,20 @@ const Room = observer(function () {
 
     const checkClaimable = async () => {
         setClaimable('11 USDC');
-        const result = await distributorContract.getClaimable();
+        const result = await distributorContract.getClaimable(profileData.distributor);
     };
 
     const doClaim = async () => {
-        const result = await distributorContract.claimAllRewards();
+        const result = await distributorContract.claimAllRewards(profileData.distributor);
     };
 
     const checkFollow = async () => {
-        const nftAddress = await lensHubContract.getFollowNFT(profileId);
+        const nftAddress = await lensHubContract.getFollowNFT(id);
         if (nftAddress === config.contracts.empty) {
             setIsFollowing(false);
         } else {
             const balance = await erc721Contract.balanceOf(nftAddress);
+            console.log('balance is', balance)
             if (balance > 0) {
                 checkClaimable();
                 setIsFollowing(true);
@@ -78,17 +79,27 @@ const Room = observer(function () {
 
     const doFollow = async () => {
         // TODO, follow failed
-        // TDOO, need profile id, currentcy addr, amount
-        const result = await lensHubContract.follow(profileId);
+        const result = await lensHubContract.follow(id, profileData.currency, profileData.amount);
     };
 
-    // useEffect(() => {
-    //     if (!account) {
-    //         return;
-    //     }
-    //     // checkFollow();
-    //     // checkClaimable();
-    // }, [account]);
+    useEffect(() => {
+        if (!profileData) {
+            return;
+        }
+        checkFollow()
+    }, [profileData]);
+
+    const getProfileData = async () => {
+        const result = await followContract.getProfileData(id);
+        setProfileData(result);
+    };
+
+    useEffect(() => {
+        if (!account) {
+            return;
+        }
+        getProfileData();
+    }, [account]);
 
     const { avatarUrl, room, address } = store;
 

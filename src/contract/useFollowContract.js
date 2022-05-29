@@ -14,5 +14,8 @@ export default function useFollowContract() {
             const func = contract.methods.invite(addresses, profileId);
             return await sendTx(func, 'Invite');
         },
+        async getProfileData(profileId) {
+            return await contract.methods.getProfileData(profileId).call();
+        },
     };
 }

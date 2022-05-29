@@ -5,3 +5,10 @@ export interface INft {
     tokenAddress: string;
     tokenId: string;
 }
+
+export interface IProfileData {
+    amount: string;
+    currency: string;
+    distributor: string;
+    recipient: string;
+}

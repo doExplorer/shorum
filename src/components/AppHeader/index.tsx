@@ -61,7 +61,7 @@ export default function AppHeader() {
                         </Dropdown>
                     </>
                 ) : (
-                    <ConnectWallet triggerConnect={!isLoggedOut()} />
+                    <ConnectWallet triggerConnect={true} />
                 )}
             </div>
         </header>

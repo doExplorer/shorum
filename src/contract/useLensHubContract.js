@@ -38,13 +38,13 @@ export default function useLensHubContract() {
         async getFollowNFT(profileId){
             return await contract.methods.getFollowNFT(profileId).call();
         },
-        async follow(profileId) {
+        async follow(profileId, currency, amount) {
+            console.log('para', profileId, currency, amount)
             const initData = web3.eth.abi.encodeParameters(
                 ['address', 'uint256'],
                 [
-                    config.tokens.usdt.address,
-                    // TODO, need to get backFee
-                    new BN(1).shiftedBy(config.tokens.usdt.decimals).integerValue(),
+                    currency,
+                    amount,
                 ]
             )
             const func = contract.methods.follow([profileId], [initData]);

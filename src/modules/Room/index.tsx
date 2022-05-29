@@ -54,6 +54,7 @@ const Room = observer(function () {
 
     const checkClaimable = async () => {
         setClaimable('11 USDC');
+        console.log('distributor address: ',profileData.distributor)
         const result = await distributorContract.getClaimable(profileData.distributor);
     };
 
@@ -67,7 +68,6 @@ const Room = observer(function () {
             setIsFollowing(false);
         } else {
             const balance = await erc721Contract.balanceOf(nftAddress);
-            console.log('balance is', balance)
             if (balance > 0) {
                 checkClaimable();
                 setIsFollowing(true);
@@ -87,6 +87,8 @@ const Room = observer(function () {
             return;
         }
         checkFollow()
+        // todo, to be removed
+        checkClaimable()
     }, [profileData]);
 
     const getProfileData = async () => {
@@ -158,7 +160,7 @@ const Room = observer(function () {
                                                 ) : (
                                                     <ActionButton
                                                         tokenAddress={config.tokens.usdt.address}
-                                                        contractAddress={config.contracts.lensHub}
+                                                        contractAddress={config.contracts.follow}
                                                         onApproved={doFollow}>
                                                         <Button onClick={doFollow} type="primary" size="large">
                                                             Back

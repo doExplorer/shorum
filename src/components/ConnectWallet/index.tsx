@@ -5,11 +5,10 @@ import NetworkModal from 'components/NetworkModal';
 import config, { chainIdMapping, supportChains } from 'config';
 import utils from 'utils';
 import { Web3Context } from '@/context/Web3Context';
-import { loggedIn } from './utils';
+// import { loggedIn } from './utils';
 import './style.less';
 
-export default function ConnectWallet(props: { triggerConnect: boolean }) {
-    const { triggerConnect } = props;
+export default function ConnectWallet() {
     const { connectWallet } = useContext(Web3Context);
 
     const [networkError, setNetworkError] = useState('');
@@ -65,12 +64,12 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, []);
 
-    useEffect(() => {
-        if (triggerConnect) {
-            connectWallet();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     if (triggerConnect) {
+    //         connectWallet();
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     return (
         <>

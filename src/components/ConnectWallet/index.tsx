@@ -45,25 +45,25 @@ export default function ConnectWallet(props: { triggerConnect: boolean }) {
     //     }
     // };
 
-    useEffect(() => {
-        window.addEventListener('ethereum#initialized', connectWallet, {
-            once: true,
-        });
+    // useEffect(() => {
+    //     window.addEventListener('ethereum#initialized', connectWallet, {
+    //         once: true,
+    //     });
 
-        if (window.ethereum) {
-            window.ethereum.on('accountsChanged', (accounts: any) => {
-                connectWallet();
-            });
+    //     if (window.ethereum) {
+    //         window.ethereum.on('accountsChanged', (accounts: any) => {
+    //             connectWallet();
+    //         });
 
-            window.ethereum.on('chainChanged', (chainId: number) => {
-                console.log('wallet id', chainId);
-                utils.setChain(chainId);
-                connectWallet();
-                window.location.reload();
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    //         window.ethereum.on('chainChanged', (chainId: number) => {
+    //             console.log('wallet id', chainId);
+    //             utils.setChain(chainId);
+    //             connectWallet();
+    //             window.location.reload();
+    //         });
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     useEffect(() => {
         if (triggerConnect) {

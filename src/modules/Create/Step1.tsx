@@ -83,18 +83,17 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
 
     const checkNameValid = async (value: string) => {
         const result: any = await lensHubContract.getProfileIdByHandle(value);
-        console.log('profile id is', result, typeof result, !result)
-        return result === '0'
+        console.log('profile id is', result, typeof result, !result);
+        return result === '0';
     };
 
     const profileNameValidator = async (_: any, value: any) => {
         console.log(_, value);
-        const isValid:boolean = await checkNameValid(value)
+        const isValid: boolean = await checkNameValid(value);
         if (isValid) {
             return Promise.resolve();
-        } else {
-            return Promise.reject();
         }
+        return Promise.reject();
     };
 
     const uploadButton = <div>{uploading ? <LoadingOutlined /> : <PlusOutlined />}</div>;

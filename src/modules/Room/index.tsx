@@ -119,18 +119,23 @@ const Room = observer(function () {
                     highHeader={
                         <div className={classNames('room-title', { 'is-mine': isMine })}>
                             <div className="room-tilte-container">
-                                <div className="room-avatar" style={{ backgroundImage: `url(${avatarUrl})` }} />
+                                <div
+                                    className="room-avatar"
+                                    style={avatarUrl ? { backgroundImage: `url(${avatarUrl})` } : undefined}
+                                />
                                 <div className="room-info">
                                     <div className="room-name">{room.name}</div>
                                     <div className="room-description">{room.description}</div>
                                     <div className="room-address">
                                         {address.slice(0, 6)}...{address.slice(-6)}
                                     </div>
-                                    <br/>
-                                    {profileData?.distributor && <div className="room-address">
-                                        Distributor address: {profileData.distributor}
-                                    </div>}
-                                    
+                                    <br />
+                                    {profileData?.distributor && (
+                                        <div className="room-address">
+                                            Distributor address: {profileData.distributor}
+                                        </div>
+                                    )}
+
                                     <div className="room-footer">
                                         <div className="room-avatar-list">
                                             <AvatarList

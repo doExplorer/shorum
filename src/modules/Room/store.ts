@@ -19,8 +19,6 @@ interface IProfile {
     }[];
 }
 
-const defaultAvatar = 'ipfs://QmQR83nhwb63sAiaKRKcAYo5hRm63GW8mqqVWTnyurjgFS';
-
 class RoomStore {
     @observable address = '0x4700F51B1FEfF74Df41BED9C31D0b2e5662d35b8';
 
@@ -30,7 +28,7 @@ class RoomStore {
         description: string;
     } = {
         name: '',
-        avatar: defaultAvatar,
+        avatar: '',
         description: '',
     };
 
@@ -69,7 +67,7 @@ class RoomStore {
         if (this.address !== fetchAccount) {
             this.room = {
                 name: defaultName,
-                avatar: defaultAvatar,
+                avatar: '',
                 description: '',
             };
             this.nfts = [];
@@ -108,7 +106,7 @@ class RoomStore {
                 this.room = {
                     name: accountInfo.name || `${this.address.slice(0, 6)}...${this.address.slice(-6)}`,
                     description: accountInfo.bio,
-                    avatar: accountInfo.avatar?.length > 0 ? accountInfo.avatar[0] : defaultAvatar,
+                    avatar: accountInfo.avatar?.length > 0 ? accountInfo.avatar[0] : '',
                 };
             })
         );

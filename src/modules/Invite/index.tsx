@@ -11,6 +11,8 @@ import utils from 'utils';
 import { RuleObject } from 'rc-field-form/lib/interface';
 import { MinusCircleOutlined } from '@ant-design/icons';
 import ModuleContainer from 'components/ModuleContainer';
+import knn3Logo from '../../assets/knn3.png';
+import rss3Logo from '../../assets/rss3.png';
 
 import './style.less';
 
@@ -58,6 +60,11 @@ const Invite = observer(function () {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off">
                 <div className="invite-form-body">
+                    <div className="powered-by">
+                        <span>Powered by</span>
+                        <img className="knn3-logo" src={knn3Logo} alt="" />
+                        <img className="rss3-logo" src={rss3Logo} alt="" />
+                    </div>
                     <Form.Item label="Do you want to invite some backers?" name="inviteValue">
                         <Checkbox.Group className="invite-list" options={options} />
                     </Form.Item>

@@ -8,6 +8,7 @@ export interface INft {
 
 export interface IProfileData {
     amount: string;
+    quantity: string;
     currency: string;
     distributor: string;
     recipient: string;

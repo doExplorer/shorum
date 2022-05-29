@@ -103,7 +103,7 @@ export const Web3ContextProvider = ({ children }) => {
         if (!isNaN(gasLimit)) {
             return func
                 .send({
-                    // gas: gasLimit,
+                    gas: gasLimit,
                     from: account,
                     value,
                 })

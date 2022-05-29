@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
+import hashHistory from 'hash-history';
 import { useParams } from 'react-router-dom';
 import useFollowContract from 'contract/useFollowContract';
 import { Form, Checkbox, Button, Input } from 'antd';
@@ -29,8 +30,9 @@ const Invite = observer(function () {
     const onFinish = async (values: { inviteValue: string[]; addresses: string[] }) => {
         console.log('Success:', values);
         store.onInvite(values, async (inviteList: string[]) => {
-            const result = await followContract.invite(inviteList, profileId);
-            return result;
+            await followContract.invite(inviteList, profileId);
+            hashHistory.push(`/room/${profileId}`);
+            // return result;
         });
     };
 

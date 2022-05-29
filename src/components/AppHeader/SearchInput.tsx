@@ -5,6 +5,7 @@ import Web3Utils from 'web3-utils';
 import _ from 'lodash';
 import config from 'config';
 import hashHistory from 'hash-history';
+import utils from 'utils';
 
 const { Option } = Select;
 
@@ -35,7 +36,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
 
     handleSearch = (value: string) => {
         const trimValue = _.trim(value);
-        if (Web3Utils.isAddress(trimValue, config.chainId)) {
+        if (Web3Utils.isAddress(trimValue, utils.getChain())) {
             const data: IOption[] = [
                 {
                     value: trimValue,

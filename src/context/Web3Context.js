@@ -4,6 +4,7 @@ import { useWallet } from 'use-wallet';
 import { LoadingOutlined } from '@ant-design/icons';
 // import { subscribe, emit } from "@nextcloud/event-bus";
 import Web3 from 'web3';
+import utils from '../js/utils';
 import config from '../config';
 
 export const Web3Context = createContext({
@@ -47,7 +48,7 @@ export const Web3ContextProvider = ({ children }) => {
             const web3Raw = new Web3(window.ethereum);
             setWeb3(web3Raw);
 
-            console.log('web3 is', web3Raw)
+            console.log('web3 is', web3Raw);
 
             // get account, use this variable to detech if user is connected
             const accounts = await web3Raw.eth.getAccounts();
@@ -58,7 +59,9 @@ export const Web3ContextProvider = ({ children }) => {
             setnetworkId(await web3Raw.eth.net.getId());
 
             // get chain id
-            setChainId(await web3Raw.eth.getChainId());
+            const chainId = await web3Raw.eth.getChainId();
+            setChainId(chainId);
+            utils.setChain(chainId);
 
             // init block number
             setBlockNumber(await web3Raw.eth.getBlockNumber());
@@ -159,6 +162,17 @@ export const Web3ContextProvider = ({ children }) => {
             });
         };
     }, [account]);
+
+    useEffect(() => {
+        if (window.ethereum) {
+            window.ethereum.on('chainChanged', (chainId) => {
+                console.log('wallet id', parseInt(chainId));
+                utils.setChain(parseInt(chainId));
+                window.location.reload();
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <Web3Context.Provider

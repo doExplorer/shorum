@@ -5,22 +5,21 @@ import ipfs from '@/js/ipfs';
 import rss3 from '@/js/rss3';
 import { IPerson } from './interface';
 
-const defaultAvatar = 'ipfs://QmXc8VNf9njXtHGpG4Bdc5U4eB8g91rkzLHjiZACPQsxEm';
-
 class LandingStore {
     @observable personList: IPerson[] = [];
 
     addresses = [
-        '0x0A6F3896f60b30F81762BDdb640a800FBCD83a29',
-        '0x6A797474a9B6fD30C394B1447055A40342Fc44b0',
-        '0x1d4B9b250B1Bd41DAA35d94BF9204Ec1b0494eE3',
-        '0x1e299DC52EB9fDAB6A6849f9731a948D8D72e474',
-        '0x5F2Bdf26F6528cE05AAC77D7fa52bac7A836eF66',
-        '0xaf49A257A6C66b509916aE316358cf83b3f17D49',
-        '0x2Df184f4F3d9dA634e4E30c64DfF848585e863Ce',
-        '0xc8f8e2F59Dd95fF67c3d39109ecA2e2A017D4c8a',
-        '0x19Eb7FfDcD670Ca917110Bd032463120a5E58C8E',
         '0x4700F51B1FEfF74Df41BED9C31D0b2e5662d35b8',
+        '0x0E9D559Bf81f7478159d8Cf6fdF37d6B62922f3e',
+        '0xA6Cc4409990d7D1E06161B711A16E9f44d44Fd89',
+        '0x47f7ea0dd4418aa1cec00786f5c47623ac37ba42',
+        '0x2Ffee84E7e601D3Ff0603CE0a24d3bf5E2A08fB1',
+        '0xFB945eE5b2E9805D66792Bd194E905f8294FBE86',
+        '0x09c85610154a276a71eb8a887e73c16072029b20',
+        '0x934b510d4c9103e6a87aef13b816fb080286d649',
+        '0x9766a4613ce437285776241739e311a319451597',
+        '0x01f252756FeDf36c8c031549afEE43765Dfcd314',
+        '0x5B4CcFD90409216EE98282b914Ec594e63CC829d',
     ];
 
     @action
@@ -44,7 +43,7 @@ class LandingStore {
                             description: profile.bio,
                         });
                     }
-                    person.avatar = ipfs.getUrl(person.avatar || defaultAvatar);
+                    person.avatar = person.avatar ? ipfs.getUrl(person.avatar) : '';
                     return person;
                 });
                 this.personList = profileList;

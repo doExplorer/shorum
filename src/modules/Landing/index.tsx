@@ -7,6 +7,7 @@ import hashHistory from 'hash-history';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import PersonCard from '@/modules/Landing/PersonCard';
+import { IPerson } from './interface';
 
 import createStore from '../Create/store';
 import store from './store';
@@ -19,6 +20,10 @@ const LandingPage = observer(function () {
     const onCreate = () => {
         createStore.clearData();
         hashHistory.push('/create');
+    };
+
+    const onCardClick = (person: IPerson) => {
+        hashHistory.push(`/room/${person.address}`);
     };
 
     useEffect(() => {
@@ -48,6 +53,9 @@ const LandingPage = observer(function () {
                                         even: index % 2,
                                     })}
                                     person={item}
+                                    onClick={() => {
+                                        onCardClick(item);
+                                    }}
                                 />
                             );
                         })}

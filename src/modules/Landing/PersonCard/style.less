@@ -25,6 +25,7 @@
         background-position: center center;
         background-repeat: no-repeat;
         overflow: hidden;
+        cursor: pointer;
     }
 
     .card-avatar {
@@ -47,6 +48,7 @@
             border: 1px solid @bg-color;
             border-radius: @person-card-radius;
             background-color: @theme-color;
+            background-image: url('../../../assets/avatar-default.png');
         }
     }
 
@@ -58,23 +60,25 @@
         border-bottom-left-radius: @person-card-radius;
         border-bottom-right-radius: @person-card-radius;
         color: @bg-color;
-        background-color: #31D7FF;
+        background-color: #31d7ff;
         padding: 12px;
 
         .person-info {
             width: 60%;
             height: 100%;
+            padding-right: 5px;
         }
 
         .person-name {
             font-size: 16px;
             font-family: 'StretchProRegular';
             line-height: 19px;
+            word-break: break-word;
         }
 
         .person-address {
             display: flex;
-            width: calc(100% - 24px);
+            width: calc(100% - 17px);
             overflow: hidden;
             justify-content: center;
             align-items: center;
@@ -96,8 +100,8 @@
         .person-description {
             font-size: 12px;
             line-height: 14px;
+            word-break: break-word;
         }
-
 
         .person-follow {
             width: 40%;
@@ -117,7 +121,7 @@
 
     &.even {
         .card-info {
-            background-color: #31FFAB;
+            background-color: #31ffab;
         }
     }
 }

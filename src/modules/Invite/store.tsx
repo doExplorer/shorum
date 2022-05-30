@@ -75,7 +75,7 @@ class InviteStore {
     onInvite = async (callback: (invites: string[]) => Promise<void>) => {
         const inviteList = this.checkedList;
         if (inviteList.length > 0) {
-            await callback(JSON.parse(JSON.stringify(inviteList)));
+            await callback(inviteList);
         }
     };
 

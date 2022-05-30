@@ -72,13 +72,13 @@ const Room = observer(function () {
         await distributorContract.claimAllRewards(profileData.distributor);
     };
 
-    const checkFollow = async (profileId: string, distributor: string) => {
-        const nftAddress = await lensHubContract.getFollowNFT(profileId);
+    const checkFollow = async (pId: string, distributor: string) => {
+        const nftAddress = await lensHubContract.getFollowNFT(pId);
         if (nftAddress === config.contracts.empty) {
             setIsFollowing(false);
         } else {
-            const balance = await erc721Contract.balanceOf(nftAddress);
-            if (balance > 0) {
+            const result = await erc721Contract.balanceOf(nftAddress);
+            if (result > 0) {
                 console.log('ready check', profileData);
                 checkClaimable(distributor);
                 setIsFollowing(true);
@@ -110,21 +110,21 @@ const Room = observer(function () {
         setAddRewardVisible(false);
     };
 
+    const getBackersNum = async (pId: string) => {
+        const nftAddress = await lensHubContract.getFollowNFT(pId);
+        const totalSupply = await erc721Contract.totalSupply(nftAddress);
+        setBackersNum(totalSupply);
+    };
+
     const getProfileData = async () => {
         // default get the first one
         const pId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
-        let result = await followContract.getProfileData(pId);
+        const result = await followContract.getProfileData(pId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
         checkFollow(pId, result.distributor);
         getBackersNum(pId);
         setProfileId(pId);
-    };
-
-    const getBackersNum = async (profileId: string) => {
-        const nftAddress = await lensHubContract.getFollowNFT(profileId);
-        const totalSupply = await erc721Contract.totalSupply(nftAddress);
-        setBackersNum(totalSupply);
     };
 
     const getBalance = async () => {
@@ -207,7 +207,7 @@ const Room = observer(function () {
                                                                 <ActionButton
                                                                     tokenAddress={config.tokens.wmatic.address}
                                                                     contractAddress={profileData.distributor}
-                                                                    approveText={'Add Reward'}
+                                                                    approveText="Add Reward"
                                                                     onApproved={() => setAddRewardVisible(true)}>
                                                                     <Button
                                                                         type="primary"
@@ -238,9 +238,9 @@ const Room = observer(function () {
                                                     values={store.roomTypeValues}
                                                     onChange={store.handleRoomTypeSwitch}
                                                 /> */}
-                                                <Button type="primary" size="large" ghost>
+                                                {/* <Button type="primary" size="large" ghost>
                                                     Owned
-                                                </Button>
+                                                </Button> */}
                                             </When>
                                             <Otherwise>
                                                 {claimable && (
@@ -260,7 +260,7 @@ const Room = observer(function () {
                                                     <ActionButton
                                                         tokenAddress={config.tokens.wmatic.address}
                                                         contractAddress={config.contracts.follow}
-                                                        approveText={'Back'}
+                                                        approveText="Back"
                                                         onApproved={doFollow}>
                                                         <Button onClick={doFollow} type="primary" size="large">
                                                             Back {payAmount && `(${payAmount} WMATIC)`}

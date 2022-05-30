@@ -34,8 +34,7 @@ const Invite = observer(function () {
 
     const onInvite = async () => {
         store.onInvite(async (inviteList: string[]) => {
-            console.log('innnn', inviteList)
-            await followContract.invite(inviteList, profileId);
+            await followContract.invite(inviteList.slice(), profileId);
             console.log('ready to jump');
             hashHistory.push(`/room/${account}`);
             // return result;
@@ -66,8 +65,8 @@ const Invite = observer(function () {
                     <div className="ant-row select-box">
                         <label>Source</label>
                         <Select value={store.source} style={{ width: 120 }} onChange={store.handleSourceChange}>
-                            <Option value="knn3">knn3</Option>
-                            <Option value="rss3">rss3</Option>
+                            <Option value="knn3">Knn3</Option>
+                            <Option value="rss3">Rss3</Option>
                         </Select>
                         <If condition={store.source !== 'rss3'}>
                             <label>Algo</label>

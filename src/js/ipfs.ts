@@ -36,7 +36,8 @@ const IPFS = {
         });
     },
     getUrl: (ipfsUrl: string) => {
-        return ipfsUrl?.replace('ipfs://', 'https://ipfs.io/ipfs/');
+        const trimmed = ipfsUrl?.replace('ipfs://', '');
+        return `https://ipfs.io/ipfs/${trimmed}`;
     },
 };
 

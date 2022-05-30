@@ -31,6 +31,7 @@ const Room = observer(function () {
     const [flexibleHeaderStatus, setFlexibleHeaderStatus] = useState(defaultStatus);
     const [isFollowing, setIsFollowing] = useState(false);
     const [profileData, setProfileData] = useState<IProfileData>();
+    const [profileId, setProfileId] = useState('')
     const [payAmount, setPayAmount] = useState('');
     const [claimable, setClaimable] = useState('');
     const followContract = useFollowContract();
@@ -80,16 +81,17 @@ const Room = observer(function () {
     };
 
     const doFollow = async () => {
-        await lensHubContract.follow(id, profileData.currency, profileData.amount);
+        await lensHubContract.follow(profileId, profileData.currency, profileData.amount);
     };
 
     const getProfileData = async () => {
         // default get the first one
-        const profileId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
-        const result = await followContract.getProfileData(profileId);
+        const pId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
+        let result = await followContract.getProfileData(pId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
-        checkFollow(profileId);
+        checkFollow(pId);
+        setProfileId(pId)
     };
 
     useEffect(() => {

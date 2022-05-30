@@ -7,6 +7,7 @@ export interface INft {
 }
 
 export interface IProfileData {
+    profileId: string;
     amount: string;
     quantity: string;
     currency: string;

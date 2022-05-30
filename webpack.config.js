@@ -15,7 +15,7 @@ const DevServer = require('webpack-dev-server');
 
 const port = process.env.npm_package_config_port;
 const target = `${process.cwd()}/dist`;
-const REACT_APP_CHAIN_ENV = 'mumbai';
+const REACT_APP_CHAIN_ENV = 'polygon';
 const SERVER_PREFIX = 'https://shorum.herokuapp.com';
 
 const ROOT_PATH = require('path').resolve(process.cwd());

@@ -52,7 +52,7 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
                 autoComplete="off">
                 <div className="page-form-body">
                     <Form.Item
-                        label="Choose a max backer you allow"
+                        label="Choose a max number of backers you allow"
                         name="backer"
                         rules={[{ required: false, message: 'Please input a max backer you allow!' }]}>
                         <InputNumber min={0} bordered={false} placeholder="Please input a max backer you allow" />
@@ -60,12 +60,12 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
 
                     <Form.Item
                         name="rate"
-                        label="Choose a rate you want to share with your backer (%)"
+                        label="Choose a rate you want to share with your backers (%)"
                         rules={[{ required: false, message: 'Please input a max backer you allow!' }]}>
                         <InputNumber min={0} bordered={false} placeholder="Please input a max backer you allow" />
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                         name="fee"
                         label="Choose a min-back fee (in ETH)"
                         rules={[{ required: false, message: 'Please choose a min-back fee (in ETH)!' }]}>
@@ -75,7 +75,7 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
                             step={0.1}
                             placeholder="Please choose a min-back fee (in ETH)"
                         />
-                    </Form.Item>
+                    </Form.Item> */}
                 </div>
                 <div className="page-form-footer">
                     <Button type="primary" size="large" ghost onClick={onPrevious}>

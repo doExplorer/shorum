@@ -162,17 +162,14 @@ const Room = observer(function () {
                                 />
                                 <div className="room-info">
                                     <div className="room-name">{room.name}</div>
-                                    <div className="room-description">{room.description}</div>
-                                    {backersNum && <div className="room-description">Backer nums: {backersNum}</div>}
-                                    <div className="room-address">
-                                        {address.slice(0, 6)}...{address.slice(-6)}
-                                    </div>
-                                    <br />
+                                    {backersNum && <div className="room-badge">{backersNum} Backers</div>}
+                                    {/* <br /> */}
                                     {profileData?.distributor && (
-                                        <div className="room-address">
-                                            Distributor address: {profileData.distributor}
-                                        </div>
+                                        <div className="room-badge">Distributor address: {profileData.distributor}</div>
                                     )}
+                                    <div className="room-description">{room.description}</div>
+
+                                    <div className="room-address">{address}</div>
 
                                     <div className="room-footer">
                                         <div className="room-avatar-list">
@@ -207,14 +204,14 @@ const Room = observer(function () {
                                                                 <ActionButton
                                                                     tokenAddress={config.tokens.wmatic.address}
                                                                     contractAddress={profileData.distributor}
-                                                                    approveText="Add Reward"
+                                                                    approveText="Tipping"
                                                                     onApproved={() => setAddRewardVisible(true)}>
                                                                     <Button
                                                                         type="primary"
                                                                         size="large"
                                                                         ghost
                                                                         onClick={() => setAddRewardVisible(true)}>
-                                                                        Add Reward (WMATIC)
+                                                                        Tip backers (WMATIC)
                                                                     </Button>
                                                                 </ActionButton>
                                                             )}

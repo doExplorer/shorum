@@ -40,8 +40,8 @@ export const chainKeyMapping = {
 };
 
 export const chainThemeMapping = {
-    1: '#ffeb3',
-    137: '#3169FF',
+    1: '#3169FF',
+    137: '#ffeb3',
     80001: '#FF7F33',
 };
 

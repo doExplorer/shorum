@@ -106,7 +106,7 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
                 autoComplete="off">
                 <div className="page-form-body">
                     <Form.Item
-                        label="Choose a name for your shorum"
+                        label="Choose a handle for your shorum"
                         name="name"
                         rules={[
                             { required: true, message: 'Please input your shorum name!' },
@@ -117,9 +117,9 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
 
                     <Form.Item
                         name="avatarUrl"
-                        label="Choose a profile picture for"
+                        label="Choose a picture for your backer NFT"
                         getValueFromEvent={normFile}
-                        rules={[{ required: true, message: 'Please upload a profile picture!' }]}>
+                        rules={[{ required: true, message: 'Please upload a picture!' }]}>
                         <Upload
                             name="avatarUrl"
                             customRequest={upload}
@@ -140,7 +140,7 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
 
                     <Form.Item
                         name="backFee"
-                        label="Choose back fee (in WMATIC)"
+                        label="Choose a minimun back fee (in WMATIC)"
                         rules={[{ required: true, message: 'Please input back fee!' }]}>
                         <Input bordered={false} placeholder="Please choose a back fee (in WMATIC)" />
                     </Form.Item>

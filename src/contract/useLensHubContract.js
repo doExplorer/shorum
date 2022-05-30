@@ -26,7 +26,7 @@ export default function useLensHubContract() {
                 imageURI: profileInfo.avatar,
                 followModule: config.contracts.follow,
                 followModuleInitData: initData,
-                followNFTURI: 'https://ipfs.io/ipfs/QmTFLSXdEQ6qsSzaXaCSNtiv6wA56qq87ytXJ182dXDQJS',
+                followNFTURI: profileInfo.avatar
             };
 
             const func = contract.methods.createProfile(finalData);

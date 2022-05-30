@@ -20,12 +20,12 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
         },
     };
 
-    const onFinish = async(values: any) => {
+    const onFinish = async (values: any) => {
         console.log('Success:', values);
 
         store.saveData(values);
 
-        console.log(store.roomInfo)
+        console.log(store.roomInfo);
 
         const result: any = await lensHubContract.createProfile(store.roomInfo);
         if (result.status) {

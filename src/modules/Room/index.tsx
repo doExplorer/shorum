@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import hashHistory from 'hash-history';
 import config from 'config';
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, message } from 'antd';
 import useFollowContract from 'contract/useFollowContract';
 import useLensHubContract from 'contract/useLensHubContract';
 import useDistributorContract from 'contract/useDistributorContract';
 import useERC721Contract from 'contract/useERC721Contract';
+import useERC20Contract from 'contract/useERC20Contract';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import Card from 'components/Card';
@@ -34,6 +35,7 @@ const Room = observer(function () {
     const [profileData, setProfileData] = useState<IProfileData>();
     const [profileId, setProfileId] = useState('');
     const [payAmount, setPayAmount] = useState('');
+    const [balance, setBalance] = useState('');
     const [rewardAmount, setRewardAmount] = useState('');
     const [claimable, setClaimable] = useState('');
     const [backersNum, setBackersNum] = useState('');
@@ -42,6 +44,7 @@ const Room = observer(function () {
     const lensHubContract = useLensHubContract();
     const distributorContract = useDistributorContract();
     const erc721Contract = useERC721Contract();
+    const erc20Contract = useERC20Contract();
 
     useEffect(() => {
         store.loadData({ id, account });
@@ -86,6 +89,10 @@ const Room = observer(function () {
     };
 
     const doFollow = async () => {
+        if (balance < profileData.amount) {
+            message.error(`Balance not enough, your current balance is ${balance} WMATIC`);
+            return;
+        }
         await lensHubContract.follow(profileId, profileData.currency, profileData.amount);
     };
 
@@ -94,6 +101,10 @@ const Room = observer(function () {
     };
 
     const addReward = async () => {
+        if (balance < rewardAmount) {
+            message.error(`Balance not enough, your current balance is ${balance} WMATIC`);
+            return;
+        }
         await distributorContract.notifyRewardAmount(profileData.distributor, rewardAmount);
         setRewardAmount('');
         setAddRewardVisible(false);
@@ -102,7 +113,6 @@ const Room = observer(function () {
     const getProfileData = async () => {
         // default get the first one
         const pId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
-        console.log('Profile ID is', pId);
         let result = await followContract.getProfileData(pId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
@@ -114,14 +124,23 @@ const Room = observer(function () {
     const getBackersNum = async (profileId: string) => {
         const nftAddress = await lensHubContract.getFollowNFT(profileId);
         const totalSupply = await erc721Contract.totalSupply(nftAddress);
-        setBackersNum(totalSupply)
-    }
+        setBackersNum(totalSupply);
+    };
+
+    const getBalance = async () => {
+        const result = new BN(await erc20Contract.balanceOf(config.tokens.wmatic.address))
+            .shiftedBy(-config.tokens.wmatic.decimals)
+            .toString();
+
+        setBalance(result);
+    };
 
     useEffect(() => {
         if (!account) {
             return;
         }
         getProfileData();
+        getBalance();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [account]);
 

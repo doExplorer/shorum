@@ -12,6 +12,7 @@ export default function useERC20Contract() {
         },
         async balanceOf(tokenAddress) {
             const contract = new web3.eth.Contract(ERC20Abi, tokenAddress);
+            console.log('Con', contract)
             return await contract.methods.balanceOf(account).call();
         },
         async approve(tokenAddress, contractAddress) {

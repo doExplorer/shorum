@@ -64,13 +64,12 @@ const Room = observer(function () {
         await distributorContract.claimAllRewards(profileData.distributor);
     };
 
-    const checkFollow = async () => {
-        const nftAddress = await lensHubContract.getFollowNFT(id);
+    const checkFollow = async (profileId: string) => {
+        const nftAddress = await lensHubContract.getFollowNFT(profileId);
         if (nftAddress === config.contracts.empty) {
             setIsFollowing(false);
         } else {
             const balance = await erc721Contract.balanceOf(nftAddress);
-            console.log('balance', balance);
             if (balance > 0) {
                 checkClaimable();
                 setIsFollowing(true);
@@ -81,27 +80,21 @@ const Room = observer(function () {
     };
 
     const doFollow = async () => {
-        // TODO, follow failed
-        const result = await lensHubContract.follow(id, profileData.currency, profileData.amount);
+        await lensHubContract.follow(id, profileData.currency, profileData.amount);
     };
-
-    useEffect(() => {
-        if (!profileData) {
-            return;
-        }
-        checkFollow();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [profileData]);
 
     const getProfileData = async () => {
-        const result = await followContract.getProfileData(id);
+        // default get the first one
+        const profileId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
+        const result = await followContract.getProfileData(profileId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
+        checkFollow(profileId);
     };
 
     useEffect(() => {
-        if (!account) {
-            return;
+        if(!account){
+            return
         }
         getProfileData();
         // eslint-disable-next-line react-hooks/exhaustive-deps

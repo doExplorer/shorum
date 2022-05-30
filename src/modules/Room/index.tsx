@@ -90,7 +90,7 @@ const Room = observer(function () {
 
     const goInvite = () => {
         hashHistory.push(`/invite/${profileId}`);
-    }
+    };
 
     const addReward = async () => {
         await distributorContract.notifyRewardAmount(profileData.distributor, rewardAmount);
@@ -101,6 +101,7 @@ const Room = observer(function () {
     const getProfileData = async () => {
         // default get the first one
         const pId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
+        console.log('Profile ID is', pId);
         let result = await followContract.getProfileData(pId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
@@ -155,34 +156,47 @@ const Room = observer(function () {
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
-                                                <div className="add-reward-wrapper">
-                                                    {addRewardVisible && (
-                                                        <input
-                                                            value={rewardAmount}
-                                                            onChange={(e) => setRewardAmount(e.target.value)}
-                                                            type="text"
-                                                            className="add-reward-input"
-                                                        />
-                                                    )}
-                                                    {addRewardVisible ? (
-                                                        <Button type="primary" size="large" ghost onClick={addReward}>
-                                                            Confirm
-                                                        </Button>
-                                                    ) : (
-                                                        <Button
-                                                            type="primary"
-                                                            size="large"
-                                                            ghost
-                                                            onClick={() => setAddRewardVisible(true)}>
-                                                            Add Reward (WMATIC)
-                                                        </Button>
-                                                    )}
-                                                </div>
-                                                <div className='invite-wrapper'>
-                                                    <Button type="primary" size="large" ghost onClick={goInvite}>
-                                                        Invite
-                                                    </Button>
-                                                </div>
+                                                {profileId && (
+                                                    <>
+                                                        <div className="add-reward-wrapper">
+                                                            {addRewardVisible && (
+                                                                <input
+                                                                    value={rewardAmount}
+                                                                    onChange={(e) => setRewardAmount(e.target.value)}
+                                                                    type="text"
+                                                                    className="add-reward-input"
+                                                                />
+                                                            )}
+                                                            {addRewardVisible ? (
+                                                                <Button
+                                                                    type="primary"
+                                                                    size="large"
+                                                                    ghost
+                                                                    onClick={addReward}>
+                                                                    Confirm
+                                                                </Button>
+                                                            ) : (
+                                                                <Button
+                                                                    type="primary"
+                                                                    size="large"
+                                                                    ghost
+                                                                    onClick={() => setAddRewardVisible(true)}>
+                                                                    Add Reward (WMATIC)
+                                                                </Button>
+                                                            )}
+                                                        </div>
+                                                        <div className="invite-wrapper">
+                                                            <Button
+                                                                type="primary"
+                                                                size="large"
+                                                                ghost
+                                                                onClick={goInvite}>
+                                                                Invite
+                                                            </Button>
+                                                        </div>
+                                                    </>
+                                                )}
+
                                                 {/* <Switch
                                                     value={store.roomType}
                                                     unCheckedChildren="Onwer"

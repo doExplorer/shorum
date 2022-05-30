@@ -170,6 +170,7 @@ const Room = observer(function () {
                                                     <ActionButton
                                                         tokenAddress={config.tokens.usdt.address}
                                                         contractAddress={config.contracts.follow}
+                                                        approveText={'Back'}
                                                         onApproved={doFollow}>
                                                         <Button onClick={doFollow} type="primary" size="large">
                                                             Back {payAmount && `(${payAmount} USDT)`}

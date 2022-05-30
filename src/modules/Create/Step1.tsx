@@ -140,9 +140,9 @@ const Step1 = observer(function ({ onNext }: { onNext: () => void }) {
 
                     <Form.Item
                         name="backFee"
-                        label="Choose back fee (in USDT)"
+                        label="Choose back fee (in WMATIC)"
                         rules={[{ required: true, message: 'Please input back fee!' }]}>
-                        <Input bordered={false} placeholder="Please choose a back fee (in USDT)" />
+                        <Input bordered={false} placeholder="Please choose a back fee (in WMATIC)" />
                     </Form.Item>
                 </div>
                 <div className="page-form-footer">

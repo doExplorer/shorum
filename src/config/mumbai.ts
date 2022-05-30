@@ -5,14 +5,10 @@ const contracts = {
 };
 
 const tokens = {
-    usdt: {
+    wmatic: {
         address: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
         decimals: 18,
-    },
-    reward: {
-        address: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
-        decimals: 18,
-    },
+    }
 };
 
 const chainId = 80001;

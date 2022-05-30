@@ -160,7 +160,7 @@ const Room = observer(function () {
                                                         type="primary"
                                                         size="large"
                                                         style={{ marginRight: '8px' }}>
-                                                        Claim {claimable} USDT
+                                                        Claim {claimable} WMATIC
                                                     </Button>
                                                 )}
                                                 {isFollowing ? (
@@ -169,12 +169,12 @@ const Room = observer(function () {
                                                     </Button>
                                                 ) : (
                                                     <ActionButton
-                                                        tokenAddress={config.tokens.usdt.address}
+                                                        tokenAddress={config.tokens.wmatic.address}
                                                         contractAddress={config.contracts.follow}
                                                         approveText={'Back'}
                                                         onApproved={doFollow}>
                                                         <Button onClick={doFollow} type="primary" size="large">
-                                                            Back {payAmount && `(${payAmount} USDT)`}
+                                                            Back {payAmount && `(${payAmount} WMATIC)`}
                                                         </Button>
                                                     </ActionButton>
                                                 )}

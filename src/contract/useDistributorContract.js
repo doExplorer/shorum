@@ -17,13 +17,13 @@ export default function useDistributorContract(contractAddress) {
         async getClaimable(contractAddress) {
             const contract = new web3.eth.Contract(DistributorAbi, contractAddress);
 
-            const earned = await contract.methods.earned(account, config.tokens.reward.address).call();
+            const earned = await contract.methods.earned(account, config.tokens.wmatic.address).call();
 
             console.log(earned, 'EARNED', typeof earned)
             if(earned === '0'){
                 return '0'
             }else{
-                return new BN(earned).shiftedBy(-config.tokens.reward.decimals).toFixed(2)
+                return new BN(earned).shiftedBy(-config.tokens.wmatic.decimals).toFixed(2)
             }
 
             // let earnList = [];

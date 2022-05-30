@@ -12,7 +12,7 @@ const envConf = require(`./${REACT_APP_CHAIN_ENV}`).default as {
         empty: string;
     };
     tokens: {
-        usdt: {
+        wmatic: {
             address: string;
             decimals: number;
         };

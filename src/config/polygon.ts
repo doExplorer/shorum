@@ -1,6 +1,6 @@
 const contracts = {
-    lensHub: '0x',
-    follow: '0x',
+    lensHub: '0xf3Fce0c9C3120Ee3b5742f18Fcd0EdD9cF08228F',
+    follow: '0xE19122416BeeD4cbaDd663878de9af7c0eb32368',
     empty: '0x0000000000000000000000000000000000000000',
 };
 

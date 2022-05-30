@@ -31,7 +31,7 @@ const Room = observer(function () {
     const [flexibleHeaderStatus, setFlexibleHeaderStatus] = useState(defaultStatus);
     const [isFollowing, setIsFollowing] = useState(false);
     const [profileData, setProfileData] = useState<IProfileData>();
-    const [profileId, setProfileId] = useState('')
+    const [profileId, setProfileId] = useState('');
     const [payAmount, setPayAmount] = useState('');
     const [claimable, setClaimable] = useState('');
     const followContract = useFollowContract();
@@ -55,9 +55,9 @@ const Room = observer(function () {
         }
     };
 
-    const checkClaimable = async () => {
-        console.log('distributor address: ', profileData.distributor);
-        const result = await distributorContract.getClaimable(profileData.distributor);
+    const checkClaimable = async (distributor: string) => {
+        console.log('distributor address: ', distributor);
+        const result = await distributorContract.getClaimable(distributor);
         setClaimable(result);
     };
 
@@ -65,14 +65,15 @@ const Room = observer(function () {
         await distributorContract.claimAllRewards(profileData.distributor);
     };
 
-    const checkFollow = async (profileId: string) => {
+    const checkFollow = async (profileId: string, distributor: string) => {
         const nftAddress = await lensHubContract.getFollowNFT(profileId);
         if (nftAddress === config.contracts.empty) {
             setIsFollowing(false);
         } else {
             const balance = await erc721Contract.balanceOf(nftAddress);
             if (balance > 0) {
-                checkClaimable();
+                console.log('ready check', profileData);
+                checkClaimable(distributor);
                 setIsFollowing(true);
             } else {
                 setIsFollowing(false);
@@ -90,13 +91,13 @@ const Room = observer(function () {
         let result = await followContract.getProfileData(pId);
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
-        checkFollow(pId);
-        setProfileId(pId)
+        checkFollow(pId, result.distributor);
+        setProfileId(pId);
     };
 
     useEffect(() => {
-        if(!account){
-            return
+        if (!account) {
+            return;
         }
         getProfileData();
         // eslint-disable-next-line react-hooks/exhaustive-deps

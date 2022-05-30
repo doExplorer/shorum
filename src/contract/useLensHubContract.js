@@ -41,6 +41,10 @@ export default function useLensHubContract() {
         async tokenOfOwnerByIndex(address, index) {
             return await contract.methods.tokenOfOwnerByIndex(address, index).call();
         },
+        async getFollowNFT(profileId) {
+            return await contract.methods.getFollowNFT(profileId).call();
+            
+        },
         async follow(profileId, currency, amount) {
             const initData = web3.eth.abi.encodeParameters(['address', 'uint256'], [currency, amount]);
             const func = contract.methods.follow([profileId], [initData]);

@@ -36,6 +36,7 @@ const Room = observer(function () {
     const [payAmount, setPayAmount] = useState('');
     const [rewardAmount, setRewardAmount] = useState('');
     const [claimable, setClaimable] = useState('');
+    const [backersNum, setBackersNum] = useState('');
     const [addRewardVisible, setAddRewardVisible] = useState<boolean>(false);
     const followContract = useFollowContract();
     const lensHubContract = useLensHubContract();
@@ -106,8 +107,15 @@ const Room = observer(function () {
         setProfileData(result);
         setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
         checkFollow(pId, result.distributor);
+        getBackersNum(pId);
         setProfileId(pId);
     };
+
+    const getBackersNum = async (profileId: string) => {
+        const nftAddress = await lensHubContract.getFollowNFT(profileId);
+        const totalSupply = await erc721Contract.totalSupply(nftAddress);
+        setBackersNum(totalSupply)
+    }
 
     useEffect(() => {
         if (!account) {
@@ -136,6 +144,7 @@ const Room = observer(function () {
                                 <div className="room-info">
                                     <div className="room-name">{room.name}</div>
                                     <div className="room-description">{room.description}</div>
+                                    {backersNum && <div className="room-description">Backer nums: {backersNum}</div>}
                                     <div className="room-address">
                                         {address.slice(0, 6)}...{address.slice(-6)}
                                     </div>

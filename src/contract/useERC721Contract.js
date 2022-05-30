@@ -11,5 +11,9 @@ export default function useERC721Contract() {
             const contract = new web3.eth.Contract(ERC721Abi, tokenAddress);
             return await contract.methods.balanceOf(account).call();
         },
+        async totalSupply(tokenAddress) {
+            const contract = new web3.eth.Contract(ERC721Abi, tokenAddress);
+            return await contract.methods.totalSupply().call();
+        },
     };
 }

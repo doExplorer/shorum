@@ -33,7 +33,9 @@ const Room = observer(function () {
     const [profileData, setProfileData] = useState<IProfileData>();
     const [profileId, setProfileId] = useState('');
     const [payAmount, setPayAmount] = useState('');
+    const [rewardAmount, setRewardAmount] = useState('')
     const [claimable, setClaimable] = useState('');
+    const [addRewardVisible, setAddRewardVisible] = useState<boolean>(false);
     const followContract = useFollowContract();
     const lensHubContract = useLensHubContract();
     const distributorContract = useDistributorContract();
@@ -84,6 +86,12 @@ const Room = observer(function () {
     const doFollow = async () => {
         await lensHubContract.follow(profileId, profileData.currency, profileData.amount);
     };
+
+    const addReward = async () => {
+        await distributorContract.notifyRewardAmount(profileData.distributor, rewardAmount)
+        setRewardAmount('')
+        setAddRewardVisible(false)
+    }
 
     const getProfileData = async () => {
         // default get the first one
@@ -142,6 +150,14 @@ const Room = observer(function () {
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
+                                                <div className="add-reward-wrapper">
+                                                    {addRewardVisible && <input value={rewardAmount} onChange={e=>setRewardAmount(e.target.value)} type="text" className="add-reward-input" />}
+                                                    {addRewardVisible ?  <Button type="primary" size="large" ghost onClick={addReward}>
+                                                        Confirm
+                                                    </Button>: <Button type="primary" size="large" ghost onClick={() => setAddRewardVisible(true)}>
+                                                        Add Reward (WMATIC)
+                                                    </Button>}
+                                                </div>
                                                 {/* <Switch
                                                     value={store.roomType}
                                                     unCheckedChildren="Onwer"
@@ -182,20 +198,20 @@ const Room = observer(function () {
                                         </Choose>
                                     </div>
                                 </div>
-                                <If condition={!isMine}>
+                                {/* <If condition={!isMine}>
                                     <div className="switch-room-type">
-                                        {/* <Switch
+                                        <Switch
                                             value={store.roomType}
                                             unCheckedChildren="Onwer"
                                             checkedChildren={room?.name || ''}
                                             values={store.roomTypeValues}
                                             onChange={store.handleRoomTypeSwitch}
-                                        /> */}
+                                        />
                                         <Button type="primary" size="large" ghost>
                                             Owned
                                         </Button>
                                     </div>
-                                </If>
+                                </If> */}
                             </div>
                         </div>
                     }

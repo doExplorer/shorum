@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 // import { useWallet } from 'use-wallet';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import ConnectWallet from 'components/ConnectWallet';
 import hashHistory from 'hash-history';
 import { Web3Context } from '@/context/Web3Context';
@@ -18,7 +18,7 @@ export default function AppHeader() {
     const { account, resetWallet, connectWallet } = useContext(Web3Context);
 
     const handleClick = () => {
-        hashHistory.push('/room');
+        hashHistory.push(`/room/${account}`);
     };
 
     const handleDropdownItemClick = ({ key }: { key: string }) => {
@@ -43,16 +43,14 @@ export default function AppHeader() {
                     <>
                         <Dropdown
                             overlay={
-                                <Menu
-                                    items={[
-                                        {
-                                            key: 'logout',
-                                            icon: <LogoutOutlined />,
-                                            label: 'Logout',
-                                        },
-                                    ]}
-                                    onClick={handleDropdownItemClick}
-                                />
+                                <Menu>
+                                    <Menu.Item icon={<UserOutlined />} onClick={handleClick}>
+                                        Profile
+                                    </Menu.Item>
+                                    <Menu.Item icon={<LogoutOutlined />} onClick={handleDropdownItemClick}>
+                                        Logout
+                                    </Menu.Item>
+                                </Menu>
                             }
                             placement="bottomRight">
                             <div className="btn-trans" onClick={handleClick}>

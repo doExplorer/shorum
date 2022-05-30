@@ -176,13 +176,19 @@ const Room = observer(function () {
                                                                     Confirm
                                                                 </Button>
                                                             ) : (
-                                                                <Button
-                                                                    type="primary"
-                                                                    size="large"
-                                                                    ghost
-                                                                    onClick={() => setAddRewardVisible(true)}>
-                                                                    Add Reward (WMATIC)
-                                                                </Button>
+                                                                <ActionButton
+                                                                    tokenAddress={config.tokens.wmatic.address}
+                                                                    contractAddress={profileData.distributor}
+                                                                    approveText={'Add Reward'}
+                                                                    onApproved={() => setAddRewardVisible(true)}>
+                                                                    <Button
+                                                                        type="primary"
+                                                                        size="large"
+                                                                        ghost
+                                                                        onClick={() => setAddRewardVisible(true)}>
+                                                                        Add Reward (WMATIC)
+                                                                    </Button>
+                                                                </ActionButton>
                                                             )}
                                                         </div>
                                                         <div className="invite-wrapper">

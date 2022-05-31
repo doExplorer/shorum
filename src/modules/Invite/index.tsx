@@ -131,7 +131,7 @@ const Invite = observer(function () {
                     </Form.Item>
                     <Checkbox.Group
                         className="invite-list"
-                        options={Array.from(options)}
+                        options={Array.from(options || [])}
                         value={store.checkedList}
                         onChange={store.onCheckedChange}
                     />

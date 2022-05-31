@@ -61,8 +61,8 @@ const Step2 = observer(function ({ onPrevious }: { onPrevious: () => void }) {
                     <Form.Item
                         name="rate"
                         label="Choose a rate you want to share with your backers (%)"
-                        rules={[{ required: false, message: 'Please input a max backer you allow!' }]}>
-                        <InputNumber min={0} bordered={false} placeholder="Please input a max backer you allow" />
+                        rules={[{ required: false, message: 'Please input a rate in %' }]}>
+                        <InputNumber min={0} bordered={false} placeholder="Please input a rate in % to share" />
                     </Form.Item>
 
                     {/* <Form.Item

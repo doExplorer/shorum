@@ -1,26 +1,21 @@
 # shorum
-showroom for web3
+Shorum is a NFT social platform where you can back a Web3 User and also create your own Backing module and share your profit with your backers
 
 
-## Frontend integration
+## Team
 
-write
+Harry Hong
+email: hong091114@hotmail.com
 
-* create-profile
-  - create-profile
-  - set backer follow module
-  
-* follow
-  * approve
-  * follow-back
+Jamie Cheng
+email: jamie.cheng@bitportal.io
 
-* distribute follow rewards
-  * display address
-    * get profile data
+Kingller Tang
+email: kingller@126.com
 
-* claim-rewards
-  * distributor - claim-rewards
-
-* lensHub
-* Backer Follow Module
-* Distributor
+## Tech Spec
+KNN3
+RSS3
+Graph
+Polygon
+Allo

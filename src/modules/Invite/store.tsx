@@ -3,7 +3,7 @@ import { observable, action } from 'mobx';
 import _ from 'lodash';
 import Web3Utils from 'web3-utils';
 import utils from 'utils';
-import walleApi from '@/js/wallet';
+import walletApi from '@/js/wallet';
 import rss3 from '@/js/rss3';
 import ipfs from '@/js/ipfs';
 import Label from './Label';
@@ -13,6 +13,8 @@ class InviteStore {
         label: React.ReactNode;
         value: string;
     }[] = [];
+
+    @observable address = '';
 
     @observable source = 'knn3';
 
@@ -45,15 +47,21 @@ class InviteStore {
         if (!address) {
             return;
         }
-        walleApi.getRelatedAddress(address, this.source, this.algo).then(
+        this.address = address;
+        this.loadRelatedAddress();
+    };
+
+    @action
+    loadRelatedAddress = () => {
+        walletApi.getRelatedAddress(this.address, this.source, this.algo).then(
             action((result) => {
                 const addressList: string[] = [];
                 this.options = (result?.data || []).map((addressInfo) => {
-                    const { address: releatedAddress } = addressInfo;
-                    addressList.push(releatedAddress);
+                    const { address: relatedAddress } = addressInfo;
+                    addressList.push(relatedAddress);
                     return {
-                        label: <Label value={releatedAddress} store={this} />,
-                        value: releatedAddress,
+                        label: <Label value={relatedAddress} store={this} />,
+                        value: relatedAddress,
                     };
                 });
                 this.getProfileList(addressList);
@@ -64,11 +72,13 @@ class InviteStore {
     @action
     handleSourceChange = (value: string) => {
         this.source = value;
+        this.loadRelatedAddress();
     };
 
     @action
     handleAlgoChange = (value: string) => {
         this.algo = value;
+        this.loadRelatedAddress();
     };
 
     @action
@@ -80,7 +90,7 @@ class InviteStore {
     };
 
     @action
-    onAddAdress = (value: string) => {
+    onAddAddress = (value: string) => {
         this.options.unshift({
             value,
             label: <Label value={value} store={this} />,

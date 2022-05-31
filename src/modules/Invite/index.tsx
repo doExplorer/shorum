@@ -42,7 +42,7 @@ const Invite = observer(function () {
     };
 
     const handleAddAddress = (value: string) => {
-        store.onAddAdress(value);
+        store.onAddAddress(value);
     };
 
     return (

@@ -34,6 +34,14 @@ function generateAccounts() {
     return accounts;
 }
 
+function fetchAccounts<T>(accounts: T[], count: number) {
+    if (accounts.length > count) {
+        const num = _.random(count, accounts.length);
+        return accounts.slice(num - count, num);
+    }
+    return accounts;
+}
+
 class InviteStore {
     @observable options: {
         label: React.ReactNode;
@@ -103,7 +111,7 @@ class InviteStore {
             walletApi.getRelatedAddress(this.address, source, algo).then(
                 action((result) => {
                     const addressList: string[] = [];
-                    let options = (result?.data || []).slice(0, 10).map((addressInfo) => {
+                    let options = fetchAccounts(result?.data || [], 10).map((addressInfo) => {
                         const { address: relatedAddress } = addressInfo;
                         addressList.push(relatedAddress);
                         return {

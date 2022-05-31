@@ -53,6 +53,9 @@ class InviteStore {
 
     @action
     loadRelatedAddress = () => {
+        if (!this.address) {
+            return;
+        }
         walletApi.getRelatedAddress(this.address, this.source, this.algo).then(
             action((result) => {
                 const addressList: string[] = [];

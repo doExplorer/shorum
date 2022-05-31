@@ -14,6 +14,8 @@ class InviteStore {
         value: string;
     }[] = [];
 
+    @observable sourceOptionsMapping = observable.map({});
+
     @observable address = '';
 
     @observable source = 'knn3';
@@ -51,37 +53,63 @@ class InviteStore {
         this.loadRelatedAddress();
     };
 
+    getKey = (source: string, algo: string) => {
+        if (source === 'rss3') {
+            return source;
+        }
+        return `${source}@${algo}`;
+    };
+
     @action
     loadRelatedAddress = () => {
         if (!this.address) {
             return;
         }
-        walletApi.getRelatedAddress(this.address, this.source, this.algo).then(
-            action((result) => {
-                const addressList: string[] = [];
-                this.options = (result?.data || []).map((addressInfo) => {
-                    const { address: relatedAddress } = addressInfo;
-                    addressList.push(relatedAddress);
-                    return {
-                        label: <Label value={relatedAddress} store={this} />,
-                        value: relatedAddress,
-                    };
-                });
-                this.getProfileList(addressList);
-            })
-        );
+        // load all data
+        [
+            ['knn3', 'OVERLAP'],
+            ['knn3', 'JACCARD'],
+            ['rss3', ''],
+        ].forEach(([source, algo]) => {
+            walletApi.getRelatedAddress(this.address, source, algo).then(
+                action((result) => {
+                    const addressList: string[] = [];
+                    const options = (result?.data || []).map((addressInfo) => {
+                        const { address: relatedAddress } = addressInfo;
+                        addressList.push(relatedAddress);
+                        return {
+                            label: <Label value={relatedAddress} store={this} />,
+                            value: relatedAddress,
+                        };
+                    });
+                    if (options.length === 0) {
+                        // generate random account if have not
+                        for (let i = 0; i < 10; i++) {
+                            const randomAccount = Web3Utils.randomHex(20);
+                            options.push({
+                                label: <Label value={randomAccount} store={this} />,
+                                value: randomAccount,
+                            });
+                        }
+                    }
+                    this.sourceOptionsMapping.set(this.getKey(source, algo), options);
+                    this.options = this.sourceOptionsMapping.get(this.getKey(this.source, this.algo)) || [];
+                    this.getProfileList(addressList);
+                })
+            );
+        });
     };
 
     @action
     handleSourceChange = (value: string) => {
         this.source = value;
-        this.loadRelatedAddress();
+        this.options = this.sourceOptionsMapping.get(this.getKey(this.source, this.algo)) || [];
     };
 
     @action
     handleAlgoChange = (value: string) => {
         this.algo = value;
-        this.loadRelatedAddress();
+        this.options = this.sourceOptionsMapping.get(this.getKey(this.source, this.algo)) || [];
     };
 
     @action

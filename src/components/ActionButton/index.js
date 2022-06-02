@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { Web3Context } from '@/context/Web3Context';
 import useERC20Contract from '@/contract/useERC20Contract';
 
-export default function ActionButton({ tokenAddress, contractAddress, children, onApproved, approveText }) {
+export default function ActionButton({ tokenAddress, contractAddress, children, onApproved, approveText, size = 'large', ghost = false }) {
     const { account, connectWallet } = useContext(Web3Context);
     const [allowance, setAllowance] = useState(0);
     const [approving, setApproving] = useState(false);
@@ -38,13 +38,13 @@ export default function ActionButton({ tokenAddress, contractAddress, children, 
         allowance > 0 || !tokenAddress ? (
             <>{children}</>
         ) : (
-            <Button type="primary" size="large" onClick={doApprove}>
+            <Button type="primary" size={size || 'large'} onClick={doApprove} ghost={ghost}>
                 {/* {approving && <span>APPROVING...</span>} */}
                 <span> {approveText || 'APPROVE'} </span>
             </Button>
         )
     ) : (
-        <Button className="btn-stake" onClick={connectWallet} type="primary" size="large">
+        <Button className="btn-stake" onClick={connectWallet} type="primary" size={size || 'large'} ghost={ghost}>
             Connect Wallet
         </Button>
     );

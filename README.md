@@ -16,8 +16,8 @@ The EVM contracts contained modules in 4 different catogories:
 
 
 ## Demo Link
-[Demo Link](https://www.youtube.com/watch?v=Bg59yLD1084&ab_channel=haohong)
-https://www.youtube.com/watch?v=Bg59yLD1084&ab_channel=haohong
+[Demo Link](https://www.youtube.com/watch?v=Bg59yLD1084)
+https://www.youtube.com/watch?v=Bg59yLD1084
 
 ## Pitch Deck
 [Link](https://docs.google.com/presentation/d/1OoYnf1F7uOa0BhXBuMoUryoR5_7WZrd35dXNg82ezqM/edit?usp=sharing)

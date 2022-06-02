@@ -169,15 +169,9 @@ const Room = observer(function () {
                                     )}
                                     <div className="room-description">{room.description}</div>
 
-                                    <div className="room-address">{address}</div>
-
                                     <div className="room-footer">
-                                        <div className="room-avatar-list">
-                                            <AvatarList
-                                                options={store.followingAvatarList}
-                                                avatarField="avatar"
-                                                maxCount={5}
-                                            />
+                                        <div className="room-address">
+                                            {address.slice(0, 6)}...{address.slice(-6)}
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
@@ -193,11 +187,7 @@ const Room = observer(function () {
                                                                 />
                                                             )}
                                                             {addRewardVisible ? (
-                                                                <Button
-                                                                    type="primary"
-                                                                    size="large"
-                                                                    ghost
-                                                                    onClick={addReward}>
+                                                                <Button type="primary" ghost onClick={addReward}>
                                                                     Confirm
                                                                 </Button>
                                                             ) : (
@@ -205,10 +195,11 @@ const Room = observer(function () {
                                                                     tokenAddress={config.tokens.wmatic.address}
                                                                     contractAddress={profileData.distributor}
                                                                     approveText="Tipping"
-                                                                    onApproved={() => setAddRewardVisible(true)}>
+                                                                    onApproved={() => setAddRewardVisible(true)}
+                                                                    size="default"
+                                                                    ghost>
                                                                     <Button
                                                                         type="primary"
-                                                                        size="large"
                                                                         ghost
                                                                         onClick={() => setAddRewardVisible(true)}>
                                                                         Tip backers (WMATIC)
@@ -217,11 +208,7 @@ const Room = observer(function () {
                                                             )}
                                                         </div>
                                                         <div className="invite-wrapper">
-                                                            <Button
-                                                                type="primary"
-                                                                size="large"
-                                                                ghost
-                                                                onClick={goInvite}>
+                                                            <Button type="primary" ghost onClick={goInvite}>
                                                                 Invite
                                                             </Button>
                                                         </div>
@@ -244,13 +231,13 @@ const Room = observer(function () {
                                                     <Button
                                                         onClick={doClaim}
                                                         type="primary"
-                                                        size="large"
-                                                        style={{ marginRight: '8px' }}>
+                                                        style={{ marginRight: '8px' }}
+                                                        ghost>
                                                         Claim {claimable} WMATIC
                                                     </Button>
                                                 )}
                                                 {isFollowing ? (
-                                                    <Button type="primary" size="large">
+                                                    <Button type="primary" ghost>
                                                         Backed
                                                     </Button>
                                                 ) : (
@@ -258,14 +245,23 @@ const Room = observer(function () {
                                                         tokenAddress={config.tokens.wmatic.address}
                                                         contractAddress={config.contracts.follow}
                                                         approveText="Back"
-                                                        onApproved={doFollow}>
-                                                        <Button onClick={doFollow} type="primary" size="large">
+                                                        onApproved={doFollow}
+                                                        size="default"
+                                                        ghost>
+                                                        <Button onClick={doFollow} type="primary" ghost>
                                                             Back {payAmount && `(${payAmount} WMATIC)`}
                                                         </Button>
                                                     </ActionButton>
                                                 )}
                                             </Otherwise>
                                         </Choose>
+                                        <div className="room-avatar-list">
+                                            <AvatarList
+                                                options={store.followingAvatarList}
+                                                avatarField="avatar"
+                                                maxCount={5}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {/* <If condition={!isMine}>

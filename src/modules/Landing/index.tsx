@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import { Button } from 'antd';
@@ -7,6 +7,7 @@ import hashHistory from 'hash-history';
 import ModuleContainer from 'components/ModuleContainer';
 import AppCarousel from 'components/AppCarousel';
 import PersonCard from '@/modules/Landing/PersonCard';
+import { Web3Context } from '@/context/Web3Context';
 import { IPerson } from './interface';
 
 import createStore from '../Create/store';
@@ -16,6 +17,7 @@ import './style.less';
 
 const LandingPage = observer(function () {
     // const wallet = useWallet();
+    const { account } = useContext(Web3Context);
 
     const onCreate = () => {
         createStore.clearData();
@@ -27,8 +29,8 @@ const LandingPage = observer(function () {
     };
 
     useEffect(() => {
-        store.loadData();
-    }, []);
+        store.loadData(account);
+    }, [account]);
 
     // const roomData = Array.from(store.roomData);
 

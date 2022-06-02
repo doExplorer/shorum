@@ -23,11 +23,20 @@ class LandingStore {
     ];
 
     @action
-    loadData = () => {
-        rss3.getProfileList(this.addresses).then(
+    loadData = async (account: string) => {
+        let { addresses } = this;
+        if (account) {
+            const followers = await rss3.getFollowerList(account);
+            if (followers && followers.length > 0) {
+                addresses = followers.map((follower) => {
+                    return follower.persona;
+                });
+            }
+        }
+        await rss3.getProfileList(addresses).then(
             action((persons) => {
                 const profileMapping = _.keyBy(persons, 'persona');
-                const profileList = this.addresses.map((address) => {
+                const profileList = addresses.map((address) => {
                     const profile = profileMapping[address];
                     const person: IPerson = {
                         name: 'not loaded with a bio',

@@ -28,6 +28,7 @@ In the project directory, you can run:
 ### `npm install`
 ### `npm run start`
 To start a local version which is defaultly connect to Polygon
+Currently Shorum creation is under whitelist mechanism, contact Discord: Harry#8841 or HarryHong: hong091114@gmail.com for whitelist invitation.
 
 ## Tech Spec
 [GraphQL endpoint](https://mw.graphql.knn3.xyz) from KNN3

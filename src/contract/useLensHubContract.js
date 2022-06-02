@@ -14,7 +14,7 @@ export default function useLensHubContract() {
             const initData = web3.eth.abi.encodeParameters(
                 ['uint256', 'address', 'address'],
                 [
-                    new BN(profileInfo.backFee).shiftedBy(config.tokens.wmatic.decimals).integerValue(),
+                    new BN(profileInfo.backFee).shiftedBy(config.tokens.wmatic.decimals).integerValue().toString(),
                     config.tokens.wmatic.address,
                     account,
                 ]

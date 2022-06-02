@@ -4,6 +4,7 @@ import { useWallet } from 'use-wallet';
 import { LoadingOutlined } from '@ant-design/icons';
 // import { subscribe, emit } from "@nextcloud/event-bus";
 import Web3 from 'web3';
+import BN from 'bignumber.js'
 import utils from '../js/utils';
 import config from '../config';
 
@@ -107,6 +108,7 @@ export const Web3ContextProvider = ({ children }) => {
             return func
                 .send({
                     gas: gasLimit,
+                    gasPrice: '50000000000',
                     from: account,
                     value,
                 })

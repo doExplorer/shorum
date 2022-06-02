@@ -20,7 +20,8 @@ The EVM contracts contained modules in 4 different catogories:
 https://www.youtube.com/watch?v=Bg59yLD1084&ab_channel=haohong
 
 ## Pitch Deck
-[Pitch Deck](https://docs.google.com/presentation/d/1OoYnf1F7uOa0BhXBuMoUryoR5_7WZrd35dXNg82ezqM/edit?usp=sharing)
+[Link](https://docs.google.com/presentation/d/1OoYnf1F7uOa0BhXBuMoUryoR5_7WZrd35dXNg82ezqM/edit?usp=sharing)
+(https://docs.google.com/presentation/d/1OoYnf1F7uOa0BhXBuMoUryoR5_7WZrd35dXNg82ezqM/edit?usp=sharing)
 
 ## SETUP
 In the project directory, you can run:
@@ -28,7 +29,7 @@ In the project directory, you can run:
 ### `npm install`
 ### `npm run start`
 To start a local version which is defaultly connect to Polygon
-Currently Shorum creation is under whitelist mechanism, contact Discord: Harry#8841 or HarryHong: hong091114@gmail.com for whitelist invitation.
+Currently Shorum creation is under whitelist mechanism, contact [Discord](discordapp.com/users/Harry#8841): Harry#8841 or Email: hong091114@gmail.com for whitelist invitation.
 
 ## Tech Spec
 [GraphQL endpoint](https://mw.graphql.knn3.xyz) from KNN3

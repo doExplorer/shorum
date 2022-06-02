@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import hashHistory from 'hash-history';
 import config from 'config';
 import { Drawer, Button, message } from 'antd';
+import IconCopy from '../../assets/copy-icon.svg';
 import useFollowContract from 'contract/useFollowContract';
 import useLensHubContract from 'contract/useLensHubContract';
 import useDistributorContract from 'contract/useDistributorContract';
@@ -26,6 +27,7 @@ import Nft from './Nft';
 import './style.less';
 
 import store from './store';
+import { toast } from 'react-toastify';
 
 const Room = observer(function () {
     const { id } = useParams<{ id?: string }>();
@@ -135,6 +137,16 @@ const Room = observer(function () {
         setBalance(result);
     };
 
+    const doCopy = (text: string) => {
+        const copied = document.createElement("input");
+        copied.setAttribute("value", text);
+        document.body.appendChild(copied);
+        copied.select();
+        document.execCommand("copy");
+        document.body.removeChild(copied);
+        toast.success('Copied address');
+    }
+
     useEffect(() => {
         if (!account) {
             return;
@@ -165,19 +177,13 @@ const Room = observer(function () {
                                     {backersNum && <div className="room-badge">{backersNum} Backers</div>}
                                     {/* <br /> */}
                                     {profileData?.distributor && (
-                                        <div className="room-badge">Distributor address: {profileData.distributor}</div>
+                                        <div className="room-badge distributor-line">Distributor address: {profileData.distributor} <img src={IconCopy} className="copy-icon" onClick={() => doCopy(profileData.distributor)} /></div>
                                     )}
                                     <div className="room-description">{room.description}</div>
 
-                                    <div className="room-address">{address}</div>
-
                                     <div className="room-footer">
-                                        <div className="room-avatar-list">
-                                            <AvatarList
-                                                options={store.followingAvatarList}
-                                                avatarField="avatar"
-                                                maxCount={5}
-                                            />
+                                        <div className="room-address">
+                                            {address.slice(0, 6)}...{address.slice(-6)}
                                         </div>
                                         <Choose>
                                             <When condition={isMine}>
@@ -193,11 +199,7 @@ const Room = observer(function () {
                                                                 />
                                                             )}
                                                             {addRewardVisible ? (
-                                                                <Button
-                                                                    type="primary"
-                                                                    size="large"
-                                                                    ghost
-                                                                    onClick={addReward}>
+                                                                <Button type="primary" ghost onClick={addReward}>
                                                                     Confirm
                                                                 </Button>
                                                             ) : (
@@ -205,10 +207,11 @@ const Room = observer(function () {
                                                                     tokenAddress={config.tokens.wmatic.address}
                                                                     contractAddress={profileData.distributor}
                                                                     approveText="Tipping"
-                                                                    onApproved={() => setAddRewardVisible(true)}>
+                                                                    onApproved={() => setAddRewardVisible(true)}
+                                                                    size="default"
+                                                                    ghost>
                                                                     <Button
                                                                         type="primary"
-                                                                        size="large"
                                                                         ghost
                                                                         onClick={() => setAddRewardVisible(true)}>
                                                                         Tip backers (WMATIC)
@@ -217,11 +220,7 @@ const Room = observer(function () {
                                                             )}
                                                         </div>
                                                         <div className="invite-wrapper">
-                                                            <Button
-                                                                type="primary"
-                                                                size="large"
-                                                                ghost
-                                                                onClick={goInvite}>
+                                                            <Button type="primary" ghost onClick={goInvite}>
                                                                 Invite
                                                             </Button>
                                                         </div>
@@ -244,13 +243,13 @@ const Room = observer(function () {
                                                     <Button
                                                         onClick={doClaim}
                                                         type="primary"
-                                                        size="large"
-                                                        style={{ marginRight: '8px' }}>
+                                                        style={{ marginRight: '8px' }}
+                                                        ghost>
                                                         Claim {claimable} WMATIC
                                                     </Button>
                                                 )}
                                                 {isFollowing ? (
-                                                    <Button type="primary" size="large">
+                                                    <Button type="primary" ghost>
                                                         Backed
                                                     </Button>
                                                 ) : (
@@ -258,14 +257,23 @@ const Room = observer(function () {
                                                         tokenAddress={config.tokens.wmatic.address}
                                                         contractAddress={config.contracts.follow}
                                                         approveText="Back"
-                                                        onApproved={doFollow}>
-                                                        <Button onClick={doFollow} type="primary" size="large">
+                                                        onApproved={doFollow}
+                                                        size="default"
+                                                        ghost>
+                                                        <Button onClick={doFollow} type="primary" ghost>
                                                             Back {payAmount && `(${payAmount} WMATIC)`}
                                                         </Button>
                                                     </ActionButton>
                                                 )}
                                             </Otherwise>
                                         </Choose>
+                                        <div className="room-avatar-list">
+                                            <AvatarList
+                                                options={store.followingAvatarList}
+                                                avatarField="avatar"
+                                                maxCount={5}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {/* <If condition={!isMine}>

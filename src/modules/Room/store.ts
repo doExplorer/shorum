@@ -83,13 +83,13 @@ class RoomStore {
             const data: INft[] = [];
             if (nfts && nfts.length > 0) {
                 nfts.forEach((item: any) => {
-                    if (item.metadata) {
-                        const currentMetaData = JSON.parse(item.metadata);
-                        const imageUrl = ipfs.getUrl(currentMetaData.image_url || currentMetaData.image);
+                    if (item.metadata || item.token_uri) {
+                        const currentMetaData = JSON.parse(item.metadata)
+                        const imageUrl = ipfs.getUrl(currentMetaData?.image_url || currentMetaData?.image || item.token_uri);
                         if (imageUrl) {
                             data.push({
-                                name: currentMetaData.name,
-                                description: currentMetaData.description,
+                                name: currentMetaData?.name || item.name,
+                                description: currentMetaData?.description || 'no description',
                                 imageUrl,
                                 tokenAddress: item.token_address,
                                 tokenId: item.token_id,

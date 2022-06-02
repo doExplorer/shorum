@@ -91,7 +91,7 @@ const Room = observer(function () {
     };
 
     const doFollow = async () => {
-        if (balance < profileData.amount) {
+        if (balance < payAmount) {
             message.error(`Balance not enough, your current balance is ${balance} WMATIC`);
             return;
         }

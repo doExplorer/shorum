@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import hashHistory from 'hash-history';
 import config from 'config';
 import { Drawer, Button, message } from 'antd';
+import IconCopy from '../../assets/copy-icon.svg';
 import useFollowContract from 'contract/useFollowContract';
 import useLensHubContract from 'contract/useLensHubContract';
 import useDistributorContract from 'contract/useDistributorContract';
@@ -26,6 +27,7 @@ import Nft from './Nft';
 import './style.less';
 
 import store from './store';
+import { toast } from 'react-toastify';
 
 const Room = observer(function () {
     const { id } = useParams<{ id?: string }>();
@@ -135,6 +137,16 @@ const Room = observer(function () {
         setBalance(result);
     };
 
+    const doCopy = (text: string) => {
+        const copied = document.createElement("input");
+        copied.setAttribute("value", text);
+        document.body.appendChild(copied);
+        copied.select();
+        document.execCommand("copy");
+        document.body.removeChild(copied);
+        toast.success('Copied address');
+    }
+
     useEffect(() => {
         if (!account) {
             return;
@@ -165,7 +177,7 @@ const Room = observer(function () {
                                     {backersNum && <div className="room-badge">{backersNum} Backers</div>}
                                     {/* <br /> */}
                                     {profileData?.distributor && (
-                                        <div className="room-badge">Distributor address: {profileData.distributor}</div>
+                                        <div className="room-badge distributor-line">Distributor address: {profileData.distributor} <img src={IconCopy} className="copy-icon" onClick={() => doCopy(profileData.distributor)} /></div>
                                     )}
                                     <div className="room-description">{room.description}</div>
 

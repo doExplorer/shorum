@@ -123,7 +123,8 @@ const Room = observer(function () {
         const pId = await lensHubContract.tokenOfOwnerByIndex(id, 0);
         const result = await followContract.getProfileData(pId);
         setProfileData(result);
-        setPayAmount(new BN(result.amount).shiftedBy(-18).toString());
+        const resultAmount = new BN(result.amount).shiftedBy(-18).toString()
+        setPayAmount(resultAmount);
         checkFollow(pId, result.distributor);
         getBackersNum(pId);
         setProfileId(pId);
@@ -256,7 +257,7 @@ const Room = observer(function () {
                                                     <ActionButton
                                                         tokenAddress={config.tokens.wmatic.address}
                                                         contractAddress={config.contracts.follow}
-                                                        approveText="Back"
+                                                        approveText={`Back ${payAmount && `(${payAmount} WMATIC)`}`}
                                                         onApproved={doFollow}
                                                         size="default"
                                                         ghost>
